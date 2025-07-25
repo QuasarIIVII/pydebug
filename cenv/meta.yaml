@@ -1,0 +1,28 @@
+package:
+  name: pydbg
+  version: "3.12.O0"
+
+source:
+  path: /home/enyephy/a/pydebug/cpython
+
+build:
+  number: 0
+  script: |
+    git switch 3.12
+    export CFLAGS="-g3 -O0 -gdwarf-2 -I${PREFIX}/include"
+    export LDFLAGS="-L${PREFIX}/lib"
+    ./configure --prefix=$PREFIX --with-pydebug --with-assertions --enable-shared --with-openssl=$PREFIX || exit 1
+    make -j$(nproc) && make install -j$(nproc)
+
+requirements:
+  host:
+    - libffi
+    - openssl
+  run:
+    - libffi
+    - openssl
+
+about:
+  home: https://www.python.org/
+  license: PSF
+  summary: "Custom-built CPython for my tweaks"

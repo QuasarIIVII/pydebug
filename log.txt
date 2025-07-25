@@ -1,0 +1,1722 @@
+asdf
+Reading symbols from python3...
+warning: File "/home/enyephy/a/pydebug/.gdbinit" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+	add-auto-load-safe-path /home/enyephy/a/pydebug/.gdbinit
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+To completely disable this security protection add
+	set auto-load safe-path /
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+	info "(gdb)Auto-loading safe path"
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib64/libthread_db.so.1".
+[Inferior 1 (process 33224) exited normally]
+Breakpoint 1 at 0x555555557149: file ./Programs/python.c, line 284.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib64/libthread_db.so.1".
+
+Breakpoint 1, main (argc=2, argv=0x7fffffffdb88) at ./Programs/python.c:284
+Breakpoint 2 at 0x7ffff7b7e66d: file Python/pythonrun.c, line 1658.
+Continuing.
+
+Breakpoint 2, pyrun_file (fp=fp@entry=0x5555555a13f0, filename=filename@entry=0x7ffff6fc6320, start=start@entry=257, globals=globals@entry=0x7ffff6fe0230, locals=locals@entry=0x7ffff6fe0230, closeit=closeit@entry=1, flags=0x7fffffffd818) at Python/pythonrun.c:1658
+Temporary breakpoint 3 at 0x7ffff7b07660: file Python/ceval.c, line 657.
+
+Temporary breakpoint 3, _PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/ceval.c:657
+Continuing.
+[3, 8] [8, 3, 2]
+[Inferior 1 (process 33255) exited normally]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib64/libthread_db.so.1".
+
+Breakpoint 1, main (argc=2, argv=0x7fffffffdb88) at ./Programs/python.c:284
+Reading symbols from python3...
+warning: File "/home/enyephy/a/pydebug/.gdbinit" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+	add-auto-load-safe-path /home/enyephy/a/pydebug/.gdbinit
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+To completely disable this security protection add
+	set auto-load safe-path /
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+	info "(gdb)Auto-loading safe path"
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib64/libthread_db.so.1".
+[Inferior 1 (process 33369) exited normally]
+Breakpoint 1 at 0x555555557149: file ./Programs/python.c, line 284.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib64/libthread_db.so.1".
+
+Breakpoint 1, main (argc=2, argv=0x7fffffffdb88) at ./Programs/python.c:284
+Breakpoint 2 at 0x7ffff7b7e66d: file Python/pythonrun.c, line 1658.
+Py_BytesMain (argc=2, argv=0x7fffffffdb88) at Modules/main.c:763
+pymain_main (args=args@entry=0x7fffffffda30) at Modules/main.c:735
+
+Breakpoint 2, pyrun_file (fp=fp@entry=0x5555555a13f0, filename=filename@entry=0x7ffff6fc6320, start=start@entry=257, globals=globals@entry=0x7ffff6fe0230, locals=locals@entry=0x7ffff6fe0230, closeit=closeit@entry=1, flags=0x7fffffffd818) at Python/pythonrun.c:1658
+Continuing.
+[3, 8] [8, 3, 2]
+[Inferior 1 (process 33401) exited normally]
+Temporary breakpoint 3 at 0x7ffff7b07660: file Python/ceval.c, line 657.
+The program is not being run.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib64/libthread_db.so.1".
+
+Breakpoint 1, main (argc=2, argv=0x7fffffffdb88) at ./Programs/python.c:284
+Continuing.
+
+Temporary breakpoint 3, _PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/ceval.c:657
+Temporary breakpoint 4 at 0x7ffff7b07660: file Python/ceval.c, line 657.
+
+Temporary breakpoint 4, _PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841090, throwflag=0) at Python/ceval.c:657
+rax            0x0                 0
+rbx            0x7ffff7fb9fe0      140737353850848
+rcx            0x0                 0
+rdx            0x0                 0
+rsi            0x7ffff7841090      140737346015376
+rdi            0x7ffff7fb9fe0      140737353850848
+rbp            0x7fffffffce40      0x7fffffffce40
+rsp            0x7fffffffce38      0x7fffffffce38
+r8             0x0                 0
+r9             0x0                 0
+r10            0x0                 0
+r11            0x0                 0
+r12            0x0                 0
+r13            0x0                 0
+r14            0x7ffff71af890      140737339127952
+r15            0x7ffff715d490      140737338791056
+rip            0x7ffff7b07660      0x7ffff7b07660 <_PyEval_EvalFrameDefault>
+eflags         0x246               [ PF ZF IF ]
+cs             0x33                51
+ss             0x2b                43
+ds             0x0                 0
+es             0x0                 0
+fs             0x0                 0
+gs             0x0                 0
+st0            0                   (raw 0x00000000000000000000)
+st1            0                   (raw 0x00000000000000000000)
+st2            0                   (raw 0x00000000000000000000)
+st3            0                   (raw 0x00000000000000000000)
+st4            0                   (raw 0x00000000000000000000)
+st5            0                   (raw 0x00000000000000000000)
+st6            0                   (raw 0x00000000000000000000)
+st7            0                   (raw 0x00000000000000000000)
+fctrl          0x37f               895
+fstat          0x0                 0
+ftag           0xffff              65535
+fiseg          0x0                 0
+fioff          0x0                 0
+foseg          0x0                 0
+fooff          0x0                 0
+fop            0x0                 0
+mxcsr          0x1fa0              [ PE IM DM ZM OM UM PM ]
+fs_base        0x7ffff753eb80      140737342860160
+gs_base        0x0                 0
+ymm0           {
+  v16_bfloat16 = {0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0xdddddddd, 0xdddddddd, 0xdddddddd, 0xdddddddd, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0xdddddddddddddddd, 0xdddddddddddddddd, 0x0, 0x0},
+  v32_int8 = {0xdd <repeats 16 times>, 0x0 <repeats 16 times>},
+  v16_int16 = {0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0xdddddddd, 0xdddddddd, 0xdddddddd, 0xdddddddd, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0xdddddddddddddddd, 0xdddddddddddddddd, 0x0, 0x0},
+  v2_int128 = {0xdddddddddddddddddddddddddddddddd, 0x0}
+}
+ymm1           {
+  v16_bfloat16 = {0x698, 0xf7f5, 0x7fff, 0x0, 0xc50, 0xf71b, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0x698, 0xf7f5, 0x7fff, 0x0, 0xc50, 0xf71b, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0xf7f50698, 0x7fff, 0xf71b0c50, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x7ffff7f50698, 0x7ffff71b0c50, 0x0, 0x0},
+  v32_int8 = {0x98, 0x6, 0xf5, 0xf7, 0xff, 0x7f, 0x0, 0x0, 0x50, 0xc, 0x1b, 0xf7, 0xff, 0x7f, 0x0 <repeats 18 times>},
+  v16_int16 = {0x698, 0xf7f5, 0x7fff, 0x0, 0xc50, 0xf71b, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0xf7f50698, 0x7fff, 0xf71b0c50, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x7ffff7f50698, 0x7ffff71b0c50, 0x0, 0x0},
+  v2_int128 = {0x7ffff71b0c5000007ffff7f50698, 0x0}
+}
+ymm2           {
+  v16_bfloat16 = {0x5ba0, 0xf7f4, 0x7fff, 0x0, 0xd250, 0xf715, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0x5ba0, 0xf7f4, 0x7fff, 0x0, 0xd250, 0xf715, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0xf7f45ba0, 0x7fff, 0xf715d250, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x7ffff7f45ba0, 0x7ffff715d250, 0x0, 0x0},
+  v32_int8 = {0xa0, 0x5b, 0xf4, 0xf7, 0xff, 0x7f, 0x0, 0x0, 0x50, 0xd2, 0x15, 0xf7, 0xff, 0x7f, 0x0 <repeats 18 times>},
+  v16_int16 = {0x5ba0, 0xf7f4, 0x7fff, 0x0, 0xd250, 0xf715, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0xf7f45ba0, 0x7fff, 0xf715d250, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x7ffff7f45ba0, 0x7ffff715d250, 0x0, 0x0},
+  v2_int128 = {0x7ffff715d25000007ffff7f45ba0, 0x0}
+}
+ymm3           {
+  v16_bfloat16 = {0x13a0, 0xf7f4, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0x13a0, 0xf7f4, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0xf7f413a0, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x7ffff7f413a0, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v32_int8 = {0xa0, 0x13, 0xf4, 0xf7, 0xff, 0x7f, 0x0, 0x0, 0xa0, 0xe7, 0xe5, 0xf7, 0xff, 0x7f, 0x0 <repeats 18 times>},
+  v16_int16 = {0x13a0, 0xf7f4, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0xf7f413a0, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x7ffff7f413a0, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v2_int128 = {0x7ffff7e5e7a000007ffff7f413a0, 0x0}
+}
+ymm4           {
+  v16_bfloat16 = {0xbfc0, 0xf7f3, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0xbfc0, 0xf7f3, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0xf7f3bfc0, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x7ffff7f3bfc0, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v32_int8 = {0xc0, 0xbf, 0xf3, 0xf7, 0xff, 0x7f, 0x0, 0x0, 0xa0, 0xe7, 0xe5, 0xf7, 0xff, 0x7f, 0x0 <repeats 18 times>},
+  v16_int16 = {0xbfc0, 0xf7f3, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0xf7f3bfc0, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x7ffff7f3bfc0, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v2_int128 = {0x7ffff7e5e7a000007ffff7f3bfc0, 0x0}
+}
+ymm5           {
+  v16_bfloat16 = {0x4820, 0xf7f4, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0x4820, 0xf7f4, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0xf7f44820, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x7ffff7f44820, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v32_int8 = {0x20, 0x48, 0xf4, 0xf7, 0xff, 0x7f, 0x0, 0x0, 0xa0, 0xe7, 0xe5, 0xf7, 0xff, 0x7f, 0x0 <repeats 18 times>},
+  v16_int16 = {0x4820, 0xf7f4, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0xf7f44820, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x7ffff7f44820, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v2_int128 = {0x7ffff7e5e7a000007ffff7f44820, 0x0}
+}
+ymm6           {
+  v16_bfloat16 = {0xbfc0, 0xf7f3, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0xbfc0, 0xf7f3, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0xf7f3bfc0, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x7ffff7f3bfc0, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v32_int8 = {0xc0, 0xbf, 0xf3, 0xf7, 0xff, 0x7f, 0x0, 0x0, 0xa0, 0xe7, 0xe5, 0xf7, 0xff, 0x7f, 0x0 <repeats 18 times>},
+  v16_int16 = {0xbfc0, 0xf7f3, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0xf7f3bfc0, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x7ffff7f3bfc0, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v2_int128 = {0x7ffff7e5e7a000007ffff7f3bfc0, 0x0}
+}
+ymm7           {
+  v16_bfloat16 = {0x13a0, 0xf7f4, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0x13a0, 0xf7f4, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0xf7f413a0, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x7ffff7f413a0, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v32_int8 = {0xa0, 0x13, 0xf4, 0xf7, 0xff, 0x7f, 0x0, 0x0, 0xa0, 0xe7, 0xe5, 0xf7, 0xff, 0x7f, 0x0 <repeats 18 times>},
+  v16_int16 = {0x13a0, 0xf7f4, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0xf7f413a0, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x7ffff7f413a0, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v2_int128 = {0x7ffff7e5e7a000007ffff7f413a0, 0x0}
+}
+ymm8           {
+  v16_bfloat16 = {0x5ba0, 0xf7f4, 0x7fff, 0x0, 0xd250, 0xf715, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0x5ba0, 0xf7f4, 0x7fff, 0x0, 0xd250, 0xf715, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0xf7f45ba0, 0x7fff, 0xf715d250, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x7ffff7f45ba0, 0x7ffff715d250, 0x0, 0x0},
+  v32_int8 = {0xa0, 0x5b, 0xf4, 0xf7, 0xff, 0x7f, 0x0, 0x0, 0x50, 0xd2, 0x15, 0xf7, 0xff, 0x7f, 0x0 <repeats 18 times>},
+  v16_int16 = {0x5ba0, 0xf7f4, 0x7fff, 0x0, 0xd250, 0xf715, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0xf7f45ba0, 0x7fff, 0xf715d250, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x7ffff7f45ba0, 0x7ffff715d250, 0x0, 0x0},
+  v2_int128 = {0x7ffff715d25000007ffff7f45ba0, 0x0}
+}
+ymm9           {
+  v16_bfloat16 = {0x6e6f, 0x33, 0x2e62, 0x7970, 0x4300, 0x4e4f, 0x4144, 0x535f, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0x6e6f, 0x33, 0x2e62, 0x7970, 0x4300, 0x4e4f, 0x4144, 0x535f, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0x336e6f, 0x79702e62, 0x4e4f4300, 0x535f4144, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x79702e6200336e6f, 0x535f41444e4f4300, 0x0, 0x0},
+  v32_int8 = {0x6f, 0x6e, 0x33, 0x0, 0x62, 0x2e, 0x70, 0x79, 0x0, 0x43, 0x4f, 0x4e, 0x44, 0x41, 0x5f, 0x53, 0x0 <repeats 16 times>},
+  v16_int16 = {0x6e6f, 0x33, 0x2e62, 0x7970, 0x4300, 0x4e4f, 0x4144, 0x535f, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0x336e6f, 0x79702e62, 0x4e4f4300, 0x535f4144, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x79702e6200336e6f, 0x535f41444e4f4300, 0x0, 0x0},
+  v2_int128 = {0x535f41444e4f430079702e6200336e6f, 0x0}
+}
+ymm10          {
+  v16_bfloat16 = {0x0 <repeats 16 times>},
+  v16_half = {0x0 <repeats 16 times>},
+  v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x0, 0x0, 0x0, 0x0},
+  v32_int8 = {0x0 <repeats 32 times>},
+  v16_int16 = {0x0 <repeats 16 times>},
+  v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x0, 0x0, 0x0, 0x0},
+  v2_int128 = {0x0, 0x0}
+}
+ymm11          {
+  v16_bfloat16 = {0x0 <repeats 16 times>},
+  v16_half = {0x0 <repeats 16 times>},
+  v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x0, 0x0, 0x0, 0x0},
+  v32_int8 = {0x0 <repeats 32 times>},
+  v16_int16 = {0x0 <repeats 16 times>},
+  v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x0, 0x0, 0x0, 0x0},
+  v2_int128 = {0x0, 0x0}
+}
+ymm12          {
+  v16_bfloat16 = {0x0 <repeats 16 times>},
+  v16_half = {0x0 <repeats 16 times>},
+  v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x0, 0x0, 0x0, 0x0},
+  v32_int8 = {0x0 <repeats 32 times>},
+  v16_int16 = {0x0 <repeats 16 times>},
+  v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x0, 0x0, 0x0, 0x0},
+  v2_int128 = {0x0, 0x0}
+}
+ymm13          {
+  v16_bfloat16 = {0x0 <repeats 16 times>},
+  v16_half = {0x0 <repeats 16 times>},
+  v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x0, 0x0, 0x0, 0x0},
+  v32_int8 = {0x0 <repeats 32 times>},
+  v16_int16 = {0x0 <repeats 16 times>},
+  v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x0, 0x0, 0x0, 0x0},
+  v2_int128 = {0x0, 0x0}
+}
+ymm14          {
+  v16_bfloat16 = {0x0 <repeats 16 times>},
+  v16_half = {0x0 <repeats 16 times>},
+  v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x0, 0x0, 0x0, 0x0},
+  v32_int8 = {0x0 <repeats 32 times>},
+  v16_int16 = {0x0 <repeats 16 times>},
+  v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x0, 0x0, 0x0, 0x0},
+  v2_int128 = {0x0, 0x0}
+}
+ymm15          {
+  v16_bfloat16 = {0x0 <repeats 16 times>},
+  v16_half = {0x0 <repeats 16 times>},
+  v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x0, 0x0, 0x0, 0x0},
+  v32_int8 = {0x0 <repeats 32 times>},
+  v16_int16 = {0x0 <repeats 16 times>},
+  v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x0, 0x0, 0x0, 0x0},
+  v2_int128 = {0x0, 0x0}
+}
+rax            0x0                 0
+rbx            0x7ffff7fb9fe0      140737353850848
+rcx            0x0                 0
+rdx            0x0                 0
+rsi            0x7ffff7841090      140737346015376
+rdi            0x7ffff7fb9fe0      140737353850848
+rbp            0x7fffffffce40      0x7fffffffce40
+rsp            0x7fffffffce38      0x7fffffffce38
+r8             0x0                 0
+r9             0x0                 0
+r10            0x0                 0
+r11            0x0                 0
+r12            0x0                 0
+r13            0x0                 0
+r14            0x7ffff71af890      140737339127952
+r15            0x7ffff715d490      140737338791056
+rip            0x7ffff7b07660      0x7ffff7b07660 <_PyEval_EvalFrameDefault>
+eflags         0x246               [ PF ZF IF ]
+cs             0x33                51
+ss             0x2b                43
+ds             0x0                 0
+es             0x0                 0
+fs             0x0                 0
+gs             0x0                 0
+st0            0                   (raw 0x00000000000000000000)
+st1            0                   (raw 0x00000000000000000000)
+st2            0                   (raw 0x00000000000000000000)
+st3            0                   (raw 0x00000000000000000000)
+st4            0                   (raw 0x00000000000000000000)
+st5            0                   (raw 0x00000000000000000000)
+st6            0                   (raw 0x00000000000000000000)
+st7            0                   (raw 0x00000000000000000000)
+fctrl          0x37f               895
+fstat          0x0                 0
+ftag           0xffff              65535
+fiseg          0x0                 0
+fioff          0x0                 0
+foseg          0x0                 0
+fooff          0x0                 0
+fop            0x0                 0
+mxcsr          0x1fa0              [ PE IM DM ZM OM UM PM ]
+fs_base        0x7ffff753eb80      140737342860160
+gs_base        0x0                 0
+ymm0           {
+  v16_bfloat16 = {0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0xdddddddd, 0xdddddddd, 0xdddddddd, 0xdddddddd, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0xdddddddddddddddd, 0xdddddddddddddddd, 0x0, 0x0},
+  v32_int8 = {0xdd <repeats 16 times>, 0x0 <repeats 16 times>},
+  v16_int16 = {0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0xdddd, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0xdddddddd, 0xdddddddd, 0xdddddddd, 0xdddddddd, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0xdddddddddddddddd, 0xdddddddddddddddd, 0x0, 0x0},
+  v2_int128 = {0xdddddddddddddddddddddddddddddddd, 0x0}
+}
+ymm1           {
+  v16_bfloat16 = {0x698, 0xf7f5, 0x7fff, 0x0, 0xc50, 0xf71b, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0x698, 0xf7f5, 0x7fff, 0x0, 0xc50, 0xf71b, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0xf7f50698, 0x7fff, 0xf71b0c50, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x7ffff7f50698, 0x7ffff71b0c50, 0x0, 0x0},
+  v32_int8 = {0x98, 0x6, 0xf5, 0xf7, 0xff, 0x7f, 0x0, 0x0, 0x50, 0xc, 0x1b, 0xf7, 0xff, 0x7f, 0x0 <repeats 18 times>},
+  v16_int16 = {0x698, 0xf7f5, 0x7fff, 0x0, 0xc50, 0xf71b, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0xf7f50698, 0x7fff, 0xf71b0c50, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x7ffff7f50698, 0x7ffff71b0c50, 0x0, 0x0},
+  v2_int128 = {0x7ffff71b0c5000007ffff7f50698, 0x0}
+}
+ymm2           {
+  v16_bfloat16 = {0x5ba0, 0xf7f4, 0x7fff, 0x0, 0xd250, 0xf715, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0x5ba0, 0xf7f4, 0x7fff, 0x0, 0xd250, 0xf715, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0xf7f45ba0, 0x7fff, 0xf715d250, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x7ffff7f45ba0, 0x7ffff715d250, 0x0, 0x0},
+  v32_int8 = {0xa0, 0x5b, 0xf4, 0xf7, 0xff, 0x7f, 0x0, 0x0, 0x50, 0xd2, 0x15, 0xf7, 0xff, 0x7f, 0x0 <repeats 18 times>},
+  v16_int16 = {0x5ba0, 0xf7f4, 0x7fff, 0x0, 0xd250, 0xf715, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0xf7f45ba0, 0x7fff, 0xf715d250, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x7ffff7f45ba0, 0x7ffff715d250, 0x0, 0x0},
+  v2_int128 = {0x7ffff715d25000007ffff7f45ba0, 0x0}
+}
+ymm3           {
+  v16_bfloat16 = {0x13a0, 0xf7f4, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0x13a0, 0xf7f4, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0xf7f413a0, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x7ffff7f413a0, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v32_int8 = {0xa0, 0x13, 0xf4, 0xf7, 0xff, 0x7f, 0x0, 0x0, 0xa0, 0xe7, 0xe5, 0xf7, 0xff, 0x7f, 0x0 <repeats 18 times>},
+  v16_int16 = {0x13a0, 0xf7f4, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0xf7f413a0, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x7ffff7f413a0, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v2_int128 = {0x7ffff7e5e7a000007ffff7f413a0, 0x0}
+}
+ymm4           {
+  v16_bfloat16 = {0xbfc0, 0xf7f3, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0xbfc0, 0xf7f3, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0xf7f3bfc0, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x7ffff7f3bfc0, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v32_int8 = {0xc0, 0xbf, 0xf3, 0xf7, 0xff, 0x7f, 0x0, 0x0, 0xa0, 0xe7, 0xe5, 0xf7, 0xff, 0x7f, 0x0 <repeats 18 times>},
+  v16_int16 = {0xbfc0, 0xf7f3, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0xf7f3bfc0, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x7ffff7f3bfc0, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v2_int128 = {0x7ffff7e5e7a000007ffff7f3bfc0, 0x0}
+}
+ymm5           {
+  v16_bfloat16 = {0x4820, 0xf7f4, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0x4820, 0xf7f4, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0xf7f44820, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x7ffff7f44820, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v32_int8 = {0x20, 0x48, 0xf4, 0xf7, 0xff, 0x7f, 0x0, 0x0, 0xa0, 0xe7, 0xe5, 0xf7, 0xff, 0x7f, 0x0 <repeats 18 times>},
+  v16_int16 = {0x4820, 0xf7f4, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0xf7f44820, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x7ffff7f44820, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v2_int128 = {0x7ffff7e5e7a000007ffff7f44820, 0x0}
+}
+ymm6           {
+  v16_bfloat16 = {0xbfc0, 0xf7f3, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0xbfc0, 0xf7f3, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0xf7f3bfc0, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x7ffff7f3bfc0, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v32_int8 = {0xc0, 0xbf, 0xf3, 0xf7, 0xff, 0x7f, 0x0, 0x0, 0xa0, 0xe7, 0xe5, 0xf7, 0xff, 0x7f, 0x0 <repeats 18 times>},
+  v16_int16 = {0xbfc0, 0xf7f3, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0xf7f3bfc0, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x7ffff7f3bfc0, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v2_int128 = {0x7ffff7e5e7a000007ffff7f3bfc0, 0x0}
+}
+ymm7           {
+  v16_bfloat16 = {0x13a0, 0xf7f4, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0x13a0, 0xf7f4, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0xf7f413a0, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x7ffff7f413a0, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v32_int8 = {0xa0, 0x13, 0xf4, 0xf7, 0xff, 0x7f, 0x0, 0x0, 0xa0, 0xe7, 0xe5, 0xf7, 0xff, 0x7f, 0x0 <repeats 18 times>},
+  v16_int16 = {0x13a0, 0xf7f4, 0x7fff, 0x0, 0xe7a0, 0xf7e5, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0xf7f413a0, 0x7fff, 0xf7e5e7a0, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x7ffff7f413a0, 0x7ffff7e5e7a0, 0x0, 0x0},
+  v2_int128 = {0x7ffff7e5e7a000007ffff7f413a0, 0x0}
+}
+ymm8           {
+  v16_bfloat16 = {0x5ba0, 0xf7f4, 0x7fff, 0x0, 0xd250, 0xf715, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0x5ba0, 0xf7f4, 0x7fff, 0x0, 0xd250, 0xf715, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0xf7f45ba0, 0x7fff, 0xf715d250, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x7ffff7f45ba0, 0x7ffff715d250, 0x0, 0x0},
+  v32_int8 = {0xa0, 0x5b, 0xf4, 0xf7, 0xff, 0x7f, 0x0, 0x0, 0x50, 0xd2, 0x15, 0xf7, 0xff, 0x7f, 0x0 <repeats 18 times>},
+  v16_int16 = {0x5ba0, 0xf7f4, 0x7fff, 0x0, 0xd250, 0xf715, 0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0xf7f45ba0, 0x7fff, 0xf715d250, 0x7fff, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x7ffff7f45ba0, 0x7ffff715d250, 0x0, 0x0},
+  v2_int128 = {0x7ffff715d25000007ffff7f45ba0, 0x0}
+}
+ymm9           {
+  v16_bfloat16 = {0x6e6f, 0x33, 0x2e62, 0x7970, 0x4300, 0x4e4f, 0x4144, 0x535f, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v16_half = {0x6e6f, 0x33, 0x2e62, 0x7970, 0x4300, 0x4e4f, 0x4144, 0x535f, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_float = {0x336e6f, 0x79702e62, 0x4e4f4300, 0x535f4144, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x79702e6200336e6f, 0x535f41444e4f4300, 0x0, 0x0},
+  v32_int8 = {0x6f, 0x6e, 0x33, 0x0, 0x62, 0x2e, 0x70, 0x79, 0x0, 0x43, 0x4f, 0x4e, 0x44, 0x41, 0x5f, 0x53, 0x0 <repeats 16 times>},
+  v16_int16 = {0x6e6f, 0x33, 0x2e62, 0x7970, 0x4300, 0x4e4f, 0x4144, 0x535f, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v8_int32 = {0x336e6f, 0x79702e62, 0x4e4f4300, 0x535f4144, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x79702e6200336e6f, 0x535f41444e4f4300, 0x0, 0x0},
+  v2_int128 = {0x535f41444e4f430079702e6200336e6f, 0x0}
+}
+ymm10          {
+  v16_bfloat16 = {0x0 <repeats 16 times>},
+  v16_half = {0x0 <repeats 16 times>},
+  v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x0, 0x0, 0x0, 0x0},
+  v32_int8 = {0x0 <repeats 32 times>},
+  v16_int16 = {0x0 <repeats 16 times>},
+  v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x0, 0x0, 0x0, 0x0},
+  v2_int128 = {0x0, 0x0}
+}
+ymm11          {
+  v16_bfloat16 = {0x0 <repeats 16 times>},
+  v16_half = {0x0 <repeats 16 times>},
+  v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x0, 0x0, 0x0, 0x0},
+  v32_int8 = {0x0 <repeats 32 times>},
+  v16_int16 = {0x0 <repeats 16 times>},
+  v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x0, 0x0, 0x0, 0x0},
+  v2_int128 = {0x0, 0x0}
+}
+ymm12          {
+  v16_bfloat16 = {0x0 <repeats 16 times>},
+  v16_half = {0x0 <repeats 16 times>},
+  v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x0, 0x0, 0x0, 0x0},
+  v32_int8 = {0x0 <repeats 32 times>},
+  v16_int16 = {0x0 <repeats 16 times>},
+  v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x0, 0x0, 0x0, 0x0},
+  v2_int128 = {0x0, 0x0}
+}
+ymm13          {
+  v16_bfloat16 = {0x0 <repeats 16 times>},
+  v16_half = {0x0 <repeats 16 times>},
+  v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x0, 0x0, 0x0, 0x0},
+  v32_int8 = {0x0 <repeats 32 times>},
+  v16_int16 = {0x0 <repeats 16 times>},
+  v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x0, 0x0, 0x0, 0x0},
+  v2_int128 = {0x0, 0x0}
+}
+ymm14          {
+  v16_bfloat16 = {0x0 <repeats 16 times>},
+  v16_half = {0x0 <repeats 16 times>},
+  v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x0, 0x0, 0x0, 0x0},
+  v32_int8 = {0x0 <repeats 32 times>},
+  v16_int16 = {0x0 <repeats 16 times>},
+  v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x0, 0x0, 0x0, 0x0},
+  v2_int128 = {0x0, 0x0}
+}
+ymm15          {
+  v16_bfloat16 = {0x0 <repeats 16 times>},
+  v16_half = {0x0 <repeats 16 times>},
+  v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_double = {0x0, 0x0, 0x0, 0x0},
+  v32_int8 = {0x0 <repeats 32 times>},
+  v16_int16 = {0x0 <repeats 16 times>},
+  v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+  v4_int64 = {0x0, 0x0, 0x0, 0x0},
+  v2_int128 = {0x0, 0x0}
+}
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib64/libthread_db.so.1".
+
+Breakpoint 1, main (argc=2, argv=0x7fffffffdb88) at ./Programs/python.c:284
+Reading symbols from python3...
+warning: File "/home/enyephy/a/pydebug/.gdbinit" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+	add-auto-load-safe-path /home/enyephy/a/pydebug/.gdbinit
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+To completely disable this security protection add
+	set auto-load safe-path /
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+	info "(gdb)Auto-loading safe path"
+Reading symbols from python3...
+(No debugging symbols found in python3)
+warning: File "/home/enyephy/a/pydebug/.gdbinit" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+	add-auto-load-safe-path /home/enyephy/a/pydebug/.gdbinit
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+To completely disable this security protection add
+	set auto-load safe-path /
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+	info "(gdb)Auto-loading safe path"
+Reading symbols from python3...
+warning: File "/home/enyephy/a/pydebug/.gdbinit" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+	add-auto-load-safe-path /home/enyephy/a/pydebug/.gdbinit
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+To completely disable this security protection add
+	set auto-load safe-path /
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+	info "(gdb)Auto-loading safe path"
+Breakpoint 1 at 0x3149: file ./Programs/python.c, line 284.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib64/libthread_db.so.1".
+
+Breakpoint 1, main (argc=2, argv=0x7fffffffdbf8) at ./Programs/python.c:284
+Breakpoint 2 at 0x7ffff7b7e66d: file Python/pythonrun.c, line 1658.
+Continuing.
+
+Breakpoint 2, pyrun_file (fp=fp@entry=0x5555555a13f0, filename=filename@entry=0x7ffff701f040, start=start@entry=257, globals=globals@entry=0x7ffff6fe01d0, locals=locals@entry=0x7ffff6fe01d0, closeit=closeit@entry=1, flags=0x7fffffffd888) at Python/pythonrun.c:1658
+Temporary breakpoint 3 at 0x7ffff7b07660: file Python/ceval.c, line 657.
+
+Temporary breakpoint 3, _PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/ceval.c:657
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:137
+======== instr [-1, 8) ========
+151	RESUME
+100	LOAD_CONST
+132	MAKE_FUNCTION
+90	STORE_NAMEHAVE_ARGUMENT
+100	LOAD_CONST
+92	UNPACK_SEQUENCE
+17	RESERVED
+90	STORE_NAMEHAVE_ARGUMENT
+90	STORE_NAMEHAVE_ARGUMENT
+type = struct _object {
+    union {
+        Py_ssize_t ob_refcnt;
+        uint32_t ob_refcnt_split[2];
+    };
+    PyTypeObject *ob_type;
+}
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:24
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:204
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:114
+======== stack [-1, -8] ========
+-1	Cannot access memory at address 0xffffffff
+======== stack [-1, -8] ========
+-1	Cannot access memory at address 0xffffffff
+======== stack [-1, -8] ========
+-1	1, 0
+	$1 = (PyTypeObject *) 0x5555555caf00
+-2	Cannot access memory at address 0xffffffff
+$2 = {
+  {
+    ob_refcnt = 2,
+    ob_refcnt_split = {2, 0}
+  },
+  ob_type = 0x7ffff7e4b1e0 <PyCode_Type>
+}
+======== stack [-1, -8] ========
+-1	2, 0
+	$3 = (PyTypeObject *) 0x7ffff7e4b1e0 <PyCode_Type>
+-2	Cannot access memory at address 0xffffffff
+======== instr [-1, 8) ========
+100	LOAD_CONST
+132	MAKE_FUNCTION
+90	STORE_NAMEHAVE_ARGUMENT
+100	LOAD_CONST
+92	UNPACK_SEQUENCE
+17	RESERVED
+90	STORE_NAMEHAVE_ARGUMENT
+90	STORE_NAMEHAVE_ARGUMENT
+2	PUSH_NULL
+======== instr [-1, 8) ========
+132	MAKE_FUNCTION
+90	STORE_NAMEHAVE_ARGUMENT
+100	LOAD_CONST
+92	UNPACK_SEQUENCE
+17	RESERVED
+90	STORE_NAMEHAVE_ARGUMENT
+90	STORE_NAMEHAVE_ARGUMENT
+2	PUSH_NULL
+101	LOAD_NAME
+No symbol "next" in current context.
+$4 = (_Py_CODEUNIT *) 0x7ffff7001f66
+$5 = {
+  cache = 90,
+  op = {
+    code = 90 'Z',
+    arg = 0 '\000'
+  }
+}
+type = union {
+    uint16_t cache;
+    struct {
+        uint8_t code;
+        uint8_t arg;
+    } op;
+} *
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:3277
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:4543
+======== stack [-1, -8] ========
+-1	1, 0
+	$6 = (PyTypeObject *) 0x7ffff7e58560 <PyFunction_Type>
+-2	Cannot access memory at address 0xffffffff
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1013
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at ./Include/object.h:220
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1023
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1414
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1027
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1418
+======== instr [-1, 8) ========
+90	STORE_NAMEHAVE_ARGUMENT
+100	LOAD_CONST
+92	UNPACK_SEQUENCE
+17	RESERVED
+90	STORE_NAMEHAVE_ARGUMENT
+90	STORE_NAMEHAVE_ARGUMENT
+2	PUSH_NULL
+101	LOAD_NAME
+101	LOAD_NAME
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:204
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:114
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1059
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1462
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1070
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1466
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1013
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at ./Include/object.h:220
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1023
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1414
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1027
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1418
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1013
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at ./Include/object.h:220
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1023
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1414
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1027
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1418
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1244
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at ./Include/object.h:220
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1252
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1771
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1244
+======== instr [-1, 8) ========
+101	LOAD_NAME
+101	LOAD_NAME
+171	CALL
+17	RESERVED
+0	CACHE
+0	CACHE
+92	UNPACK_SEQUENCE
+17	RESERVED
+90	STORE_NAMEHAVE_ARGUMENT
+======== stack [-1, -8] ========
+-1	2, 0
+	$7 = (PyTypeObject *) 0x7ffff7e58560 <PyFunction_Type>
+-2	null
+-3	Cannot access memory at address 0xffffffff
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at ./Include/object.h:220
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1252
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1771
+======== instr [-1, 8) ========
+101	LOAD_NAME
+101	LOAD_NAME
+171	CALL
+17	RESERVED
+0	CACHE
+0	CACHE
+92	UNPACK_SEQUENCE
+17	RESERVED
+90	STORE_NAMEHAVE_ARGUMENT
+======== stack [-1, -8] ========
+-1	-1, 0
+	$8 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-2	2, 0
+	$9 = (PyTypeObject *) 0x7ffff7e58560 <PyFunction_Type>
+-3	null
+-4	Cannot access memory at address 0xffffffff
+$10 = {
+  ob_base = {
+    {
+      ob_refcnt = 4294967295,
+      ob_refcnt_split = {4294967295, 0}
+    },
+    ob_type = 0x7ffff7e59ec0 <PyLong_Type>
+  },
+  long_value = {
+    lv_tag = 8,
+    ob_digit = {3}
+  }
+}
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1244
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at ./Include/object.h:220
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1252
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1771
+======== stack [-1, -8] ========
+-1	-1, 0
+	$11 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-2	-1, 0
+	$12 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-3	2, 0
+	$13 = (PyTypeObject *) 0x7ffff7e58560 <PyFunction_Type>
+-4	null
+-5	Cannot access memory at address 0xffffffff
+$14 = {
+  ob_base = {
+    {
+      ob_refcnt = 4294967295,
+      ob_refcnt_split = {4294967295, 0}
+    },
+    ob_type = 0x7ffff7e59ec0 <PyLong_Type>
+  },
+  long_value = {
+    lv_tag = 8,
+    ob_digit = {8}
+  }
+}
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:3709
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:2664
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at ./Include/object.h:220
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:2690
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at ./Include/object.h:220
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:2696
+#0  _PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:2712
+#1  0x00007ffff7b1c42d in _PyEval_EvalFrame (tstate=tstate@entry=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=<optimized out>, throwflag=throwflag@entry=0) at ./Include/internal/pycore_ceval.h:89
+#2  0x00007ffff7b1c574 in _PyEval_Vector (tstate=tstate@entry=0x7ffff7fb9fe0 <_PyRuntime+475008>, func=func@entry=0x7ffff6fc8e90, locals=locals@entry=0x7ffff6fe01d0, args=args@entry=0x0, argcount=argcount@entry=0, kwnames=kwnames@entry=0x0) at Python/ceval.c:1685
+#3  0x00007ffff7b1c63f in PyEval_EvalCode (co=co@entry=0x7ffff7001ea0, globals=globals@entry=0x7ffff6fe01d0, locals=locals@entry=0x7ffff6fe01d0) at Python/ceval.c:580
+#4  0x00007ffff7b7e52d in run_eval_code_obj (tstate=tstate@entry=0x7ffff7fb9fe0 <_PyRuntime+475008>, co=co@entry=0x7ffff7001ea0, globals=globals@entry=0x7ffff6fe01d0, locals=locals@entry=0x7ffff6fe01d0) at Python/pythonrun.c:1757
+#5  0x00007ffff7b7e623 in run_mod (mod=mod@entry=0x555555626808, filename=filename@entry=0x7ffff701f040, globals=globals@entry=0x7ffff6fe01d0, locals=locals@entry=0x7ffff6fe01d0, flags=flags@entry=0x7fffffffd888, arena=arena@entry=0x7ffff7030460) at Python/pythonrun.c:1778
+#6  0x00007ffff7b7e6f1 in pyrun_file (fp=fp@entry=0x5555555a13f0, filename=filename@entry=0x7ffff701f040, start=start@entry=257, globals=globals@entry=0x7ffff6fe01d0, locals=locals@entry=0x7ffff6fe01d0, closeit=closeit@entry=1, flags=0x7fffffffd888) at Python/pythonrun.c:1674
+#7  0x00007ffff7b819b1 in _PyRun_SimpleFileObject (fp=fp@entry=0x5555555a13f0, filename=filename@entry=0x7ffff701f040, closeit=closeit@entry=1, flags=flags@entry=0x7fffffffd888) at Python/pythonrun.c:459
+#8  0x00007ffff7b81b6f in _PyRun_AnyFileObject (fp=fp@entry=0x5555555a13f0, filename=filename@entry=0x7ffff701f040, closeit=closeit@entry=1, flags=flags@entry=0x7fffffffd888) at Python/pythonrun.c:78
+#9  0x00007ffff7ba7444 in pymain_run_file_obj (program_name=program_name@entry=0x7ffff6ffe240, filename=filename@entry=0x7ffff701f040, skip_source_first_line=0) at Modules/main.c:361
+#10 0x00007ffff7ba756c in pymain_run_file (config=config@entry=0x7ffff7f5cbb0 <_PyRuntime+93008>) at Modules/main.c:380
+#11 0x00007ffff7ba7ece in pymain_run_python (exitcode=exitcode@entry=0x7fffffffda44) at Modules/main.c:634
+#12 0x00007ffff7ba817e in Py_RunMain () at Modules/main.c:714
+#13 0x00007ffff7ba81fc in pymain_main (args=args@entry=0x7fffffffdaa0) at Modules/main.c:744
+#14 0x00007ffff7ba82ca in Py_BytesMain (argc=<optimized out>, argv=<optimized out>) at Modules/main.c:768
+#15 0x0000555555557156 in main (argc=<optimized out>, argv=<optimized out>) at ./Programs/python.c:285
+#16 0x00007ffff75675ee in ?? () from /usr/lib64/libc.so.6
+#17 0x00007ffff75676a9 in __libc_start_main () from /usr/lib64/libc.so.6
+#18 0x0000555555557085 in _start ()
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/ceval.c:743
+======== instr [-1, 8) ========
+0	CACHE
+151	RESUME
+88	LOAD_FAST__LOAD_FAST
+124	LOAD_FAST
+103	BUILD_LIST
+88	LOAD_FAST__LOAD_FAST
+86	LOAD_FAST__LOAD_CONST
+100	LOAD_CONST
+103	BUILD_LIST
+#0  _PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/generated_cases.c.h:10
+#1  0x00007ffff7b1c42d in _PyEval_EvalFrame (tstate=tstate@entry=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=<optimized out>, throwflag=throwflag@entry=0) at ./Include/internal/pycore_ceval.h:89
+#2  0x00007ffff7b1c574 in _PyEval_Vector (tstate=tstate@entry=0x7ffff7fb9fe0 <_PyRuntime+475008>, func=func@entry=0x7ffff6fc8e90, locals=locals@entry=0x7ffff6fe01d0, args=args@entry=0x0, argcount=argcount@entry=0, kwnames=kwnames@entry=0x0) at Python/ceval.c:1685
+#3  0x00007ffff7b1c63f in PyEval_EvalCode (co=co@entry=0x7ffff7001ea0, globals=globals@entry=0x7ffff6fe01d0, locals=locals@entry=0x7ffff6fe01d0) at Python/ceval.c:580
+#4  0x00007ffff7b7e52d in run_eval_code_obj (tstate=tstate@entry=0x7ffff7fb9fe0 <_PyRuntime+475008>, co=co@entry=0x7ffff7001ea0, globals=globals@entry=0x7ffff6fe01d0, locals=locals@entry=0x7ffff6fe01d0) at Python/pythonrun.c:1757
+#5  0x00007ffff7b7e623 in run_mod (mod=mod@entry=0x555555626808, filename=filename@entry=0x7ffff701f040, globals=globals@entry=0x7ffff6fe01d0, locals=locals@entry=0x7ffff6fe01d0, flags=flags@entry=0x7fffffffd888, arena=arena@entry=0x7ffff7030460) at Python/pythonrun.c:1778
+#6  0x00007ffff7b7e6f1 in pyrun_file (fp=fp@entry=0x5555555a13f0, filename=filename@entry=0x7ffff701f040, start=start@entry=257, globals=globals@entry=0x7ffff6fe01d0, locals=locals@entry=0x7ffff6fe01d0, closeit=closeit@entry=1, flags=0x7fffffffd888) at Python/pythonrun.c:1674
+#7  0x00007ffff7b819b1 in _PyRun_SimpleFileObject (fp=fp@entry=0x5555555a13f0, filename=filename@entry=0x7ffff701f040, closeit=closeit@entry=1, flags=flags@entry=0x7fffffffd888) at Python/pythonrun.c:459
+#8  0x00007ffff7b81b6f in _PyRun_AnyFileObject (fp=fp@entry=0x5555555a13f0, filename=filename@entry=0x7ffff701f040, closeit=closeit@entry=1, flags=flags@entry=0x7fffffffd888) at Python/pythonrun.c:78
+#9  0x00007ffff7ba7444 in pymain_run_file_obj (program_name=program_name@entry=0x7ffff6ffe240, filename=filename@entry=0x7ffff701f040, skip_source_first_line=0) at Modules/main.c:361
+#10 0x00007ffff7ba756c in pymain_run_file (config=config@entry=0x7ffff7f5cbb0 <_PyRuntime+93008>) at Modules/main.c:380
+#11 0x00007ffff7ba7ece in pymain_run_python (exitcode=exitcode@entry=0x7fffffffda44) at Modules/main.c:634
+#12 0x00007ffff7ba817e in Py_RunMain () at Modules/main.c:714
+#13 0x00007ffff7ba81fc in pymain_main (args=args@entry=0x7fffffffdaa0) at Modules/main.c:744
+#14 0x00007ffff7ba82ca in Py_BytesMain (argc=<optimized out>, argv=<optimized out>) at Modules/main.c:768
+#15 0x0000555555557156 in main (argc=<optimized out>, argv=<optimized out>) at ./Programs/python.c:285
+#16 0x00007ffff75675ee in ?? () from /usr/lib64/libc.so.6
+#17 0x00007ffff75676a9 in __libc_start_main () from /usr/lib64/libc.so.6
+#18 0x0000555555557085 in _start ()
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/bytecodes.c:137
+======== stack [-1, -8] ========
+-1	-1, 0
+	$15 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-2	-1, 0
+	$16 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-3	Cannot access memory at address 0xffffffff
+======== instr [-1, 8) ========
+151	RESUME
+88	LOAD_FAST__LOAD_FAST
+124	LOAD_FAST
+103	BUILD_LIST
+88	LOAD_FAST__LOAD_FAST
+86	LOAD_FAST__LOAD_CONST
+100	LOAD_CONST
+103	BUILD_LIST
+102	BUILD_TUPLE
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/generated_cases.c.h:24
+======== instr [-1, 8) ========
+88	LOAD_FAST__LOAD_FAST
+124	LOAD_FAST
+103	BUILD_LIST
+88	LOAD_FAST__LOAD_FAST
+86	LOAD_FAST__LOAD_CONST
+100	LOAD_CONST
+103	BUILD_LIST
+102	BUILD_TUPLE
+83	RETURN_VALUE
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/bytecodes.c:192
+======== instr [-1, 8) ========
+88	LOAD_FAST__LOAD_FAST
+124	LOAD_FAST
+103	BUILD_LIST
+88	LOAD_FAST__LOAD_FAST
+86	LOAD_FAST__LOAD_CONST
+100	LOAD_CONST
+103	BUILD_LIST
+102	BUILD_TUPLE
+83	RETURN_VALUE
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/generated_cases.c.h:140
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/bytecodes.c:192
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/generated_cases.c.h:150
+======== stack [-1, -8] ========
+-1	-1, 0
+	$17 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-2	-1, 0
+	$18 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-3	-1, 0
+	$19 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-4	-1, 0
+	$20 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-5	Cannot access memory at address 0xffffffff
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/bytecodes.c:1502
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/generated_cases.c.h:2059
+======== stack [-1, -8] ========
+-1	-1, 0
+	$21 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-2	-1, 0
+	$22 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-3	-1, 0
+	$23 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-4	-1, 0
+	$24 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-5	Cannot access memory at address 0xffffffff
+$25 = 2
+======== stack [-1, -8] ========
+-1	1, 0
+	$26 = (PyTypeObject *) 0x7ffff7e59780 <PyList_Type>
+-2	-1, 0
+	$27 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-3	-1, 0
+	$28 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-4	Cannot access memory at address 0xffffffff
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/bytecodes.c:192
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/generated_cases.c.h:140
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/bytecodes.c:192
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/generated_cases.c.h:150
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/bytecodes.c:204
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/generated_cases.c.h:114
+======== stack [-1, -8] ========
+-1	-1, 0
+	$29 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-2	-1, 0
+	$30 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-3	-1, 0
+	$31 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-4	1, 0
+	$32 = (PyTypeObject *) 0x7ffff7e59780 <PyList_Type>
+-5	-1, 0
+	$33 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-6	-1, 0
+	$34 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-7	Cannot access memory at address 0xffffffff
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/bytecodes.c:1502
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/generated_cases.c.h:2059
+$35 = 3
+======== stack [-1, -8] ========
+-1	1, 0
+	$36 = (PyTypeObject *) 0x7ffff7e59780 <PyList_Type>
+-2	1, 0
+	$37 = (PyTypeObject *) 0x7ffff7e59780 <PyList_Type>
+-3	-1, 0
+	$38 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-4	-1, 0
+	$39 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-5	Cannot access memory at address 0xffffffff
+======== instr [-1, 8) ========
+103	BUILD_LIST
+102	BUILD_TUPLE
+83	RETURN_VALUE
+205	
+205	
+253	INSTRUMENTED_INSTRUCTION
+253	INSTRUMENTED_INSTRUCTION
+253	INSTRUMENTED_INSTRUCTION
+253	INSTRUMENTED_INSTRUCTION
+======== instr [-1, 8) ========
+102	BUILD_TUPLE
+83	RETURN_VALUE
+205	
+205	
+253	INSTRUMENTED_INSTRUCTION
+253	INSTRUMENTED_INSTRUCTION
+253	INSTRUMENTED_INSTRUCTION
+253	INSTRUMENTED_INSTRUCTION
+96	DELETE_ATTR
+$40 = 2
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/bytecodes.c:1497
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/generated_cases.c.h:2046
+$41 = (PyObject *) 0x7ffff71be620
+A syntax error in expression, near `^values[0]'.
+$42 = {
+  {
+    ob_refcnt = 1,
+    ob_refcnt_split = {1, 0}
+  },
+  ob_type = 0x7ffff7e59780 <PyList_Type>
+}
+Structure has no component named operator*.
+$43 = {
+  ob_base = {
+    ob_base = {
+      {
+        ob_refcnt = 1,
+        ob_refcnt_split = {1, 0}
+      },
+      ob_type = 0x7ffff7e59780 <PyList_Type>
+    },
+    ob_size = 2
+  },
+  ob_item = 0x7ffff7178b20,
+  allocated = 2
+}
+$44 = {
+  ob_base = {
+    ob_base = {
+      {
+        ob_refcnt = 1,
+        ob_refcnt_split = {1, 0}
+      },
+      ob_type = 0x7ffff7e59780 <PyList_Type>
+    },
+    ob_size = 3
+  },
+  ob_item = 0x7ffff7178b50,
+  allocated = 3
+}
+======== stack [-1, -8] ========
+-1	1, 0
+	$45 = (PyTypeObject *) 0x7ffff7e60c20 <PyTuple_Type>
+-2	-1, 0
+	$46 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-3	-1, 0
+	$47 = (PyTypeObject *) 0x7ffff7e59ec0 <PyLong_Type>
+-4	Cannot access memory at address 0xffffffff
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/generated_cases.c.h:930
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841088, throwflag=0) at Python/bytecodes.c:643
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/ceval.c:748
+======== instr [-1, 8) ========
+0	CACHE
+92	UNPACK_SEQUENCE
+17	RESERVED
+90	STORE_NAMEHAVE_ARGUMENT
+90	STORE_NAMEHAVE_ARGUMENT
+2	PUSH_NULL
+101	LOAD_NAME
+101	LOAD_NAME
+101	LOAD_NAME
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1059
+Undefined command: "qstr".  Try "help".
+======== stack [-1, -8] ========
+-1	1, 0
+	$48 = (PyTypeObject *) 0x7ffff7e60c20 <PyTuple_Type>
+-2	Cannot access memory at address 0xffffffff
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1462
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1070
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1466
+======== stack [-1, -8] ========
+-1	1, 0
+	$49 = (PyTypeObject *) 0x7ffff7e59780 <PyList_Type>
+-2	1, 0
+	$50 = (PyTypeObject *) 0x7ffff7e59780 <PyList_Type>
+-3	Cannot access memory at address 0xffffffff
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1013
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at ./Include/object.h:220
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1023
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1414
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1027
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1418
+$51 = {
+  {
+    ob_refcnt = 1,
+    ob_refcnt_split = {1, 0}
+  },
+  ob_type = 0x7ffff7e59780 <PyList_Type>
+}
+value has been optimized out
+No symbol "ç" in current context.
+No symbol "ç" in current context.
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1013
+$52 = 0x7ffff7f5a0a8 <_PyRuntime+81992> "b"
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at ./Include/object.h:220
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1023
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1414
+$53 = {
+  {
+    ob_refcnt = 2,
+    ob_refcnt_split = {2, 0}
+  },
+  ob_type = 0x7ffff7e59780 <PyList_Type>
+}
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1027
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1418
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1244
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at ./Include/object.h:220
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1252
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at ./Include/object.h:220
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1279
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1771
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1244
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at ./Include/object.h:220
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1252
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/generated_cases.c.h:1771
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/bytecodes.c:1244
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at ./Include/object.h:220
+Continuing.
+[3, 8] [8, 3, 2]
+[Inferior 1 (process 19218) exited normally]
+Undefined command: "QQ".  Try "help".
+Reading symbols from python3...
+warning: File "/home/enyephy/a/pydebug/.gdbinit" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+	add-auto-load-safe-path /home/enyephy/a/pydebug/.gdbinit
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+To completely disable this security protection add
+	set auto-load safe-path /
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+	info "(gdb)Auto-loading safe path"
+Undefined command: "S".  Try "help".
+Reading symbols from python3...
+warning: File "/home/enyephy/a/pydebug/.gdbinit" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+	add-auto-load-safe-path /home/enyephy/a/pydebug/.gdbinit
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+To completely disable this security protection add
+	set auto-load safe-path /
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+	info "(gdb)Auto-loading safe path"
+Reading symbols from python3...
+warning: File "/home/enyephy/a/pydebug/.gdbinit" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+	add-auto-load-safe-path /home/enyephy/a/pydebug/.gdbinit
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+To completely disable this security protection add
+	set auto-load safe-path /
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+	info "(gdb)Auto-loading safe path"
+Breakpoint 1 at 0x3149: file ./Programs/python.c, line 284.
+Missing argument 0 in user function.
+Reading symbols from python3...
+warning: File "/home/enyephy/a/pydebug/.gdbinit" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+	add-auto-load-safe-path /home/enyephy/a/pydebug/.gdbinit
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+To completely disable this security protection add
+	set auto-load safe-path /
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+	info "(gdb)Auto-loading safe path"
+Breakpoint 1 at 0x3149: file ./Programs/python.c, line 284.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib64/libthread_db.so.1".
+
+Breakpoint 1, main (argc=2, argv=0x7fffffffdbf8) at ./Programs/python.c:284
+Breakpoint 2 at 0x7ffff7b7e66d: file Python/pythonrun.c, line 1658.
+Temporary breakpoint 3 at 0x7ffff7b07660: file Python/ceval.c, line 657.
+
+Temporary breakpoint 3, _PyEval_EvalFrameDefault (tstate=0x7ffff7fb9fe0 <_PyRuntime+475008>, frame=0x7ffff7841020, throwflag=0) at Python/ceval.c:657
+======== instr [-1, 8) ========
+value has been optimized out
+$1 = (PyObject *) 0xaaa1
+Cannot access memory at address 0xaaa1
+type = int
+Reading symbols from python3...
+warning: File "/home/enyephy/a/pydebug/.gdbinit" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+	add-auto-load-safe-path /home/enyephy/a/pydebug/.gdbinit
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+To completely disable this security protection add
+	set auto-load safe-path /
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+	info "(gdb)Auto-loading safe path"
+Breakpoint 1 at 0x3149: file ./Programs/python.c, line 284.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib64/libthread_db.so.1".
+
+Breakpoint 1, main (argc=32767, argv=0x25) at ./Programs/python.c:284
+Breakpoint 2 at 0x7ffff7b134d8: file Python/pythonrun.c, line 1659.
+Temporary breakpoint 3 at 0x7ffff7a5a08c: file Python/ceval.c, line 657.
+
+Temporary breakpoint 3, _PyEval_EvalFrameDefault (tstate=0x7ffff7fb9ce0 <_PyRuntime+475008>, frame=0x7ffff76d5020, throwflag=0) at Python/ceval.c:657
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9ce0 <_PyRuntime+475008>, frame=0x7ffff76d5020, throwflag=0) at Python/bytecodes.c:137
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9ce0 <_PyRuntime+475008>, frame=0x7ffff76d5020, throwflag=0) at Python/ceval.c:836
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9ce0 <_PyRuntime+475008>, frame=0x7ffff76d5020, throwflag=0) at Python/bytecodes.c:204
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9ce0 <_PyRuntime+475008>, frame=0x7ffff76d5020, throwflag=0) at Python/generated_cases.c.h:114
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9ce0 <_PyRuntime+475008>, frame=0x7ffff76d5020, throwflag=0) at Python/bytecodes.c:1013
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9ce0 <_PyRuntime+475008>, frame=0x7ffff76d5020, throwflag=0) at Python/generated_cases.c.h:1414
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9ce0 <_PyRuntime+475008>, frame=0x7ffff76d5020, throwflag=0) at Python/bytecodes.c:1027
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9ce0 <_PyRuntime+475008>, frame=0x7ffff76d5020, throwflag=0) at Python/generated_cases.c.h:1418
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9ce0 <_PyRuntime+475008>, frame=0x7ffff76d5020, throwflag=0) at Python/bytecodes.c:204
+_PyEval_EvalFrameDefault (tstate=0x7ffff7fb9ce0 <_PyRuntime+475008>, frame=0x7ffff76d5020, throwflag=0) at Python/generated_cases.c.h:114
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib64/libthread_db.so.1".
+
+Breakpoint 1, main (argc=32767, argv=0x25) at ./Programs/python.c:284
+Temporary breakpoint 4 at 0x7ffff7a5a08c: file Python/ceval.c, line 657.
+
+Temporary breakpoint 4, _PyEval_EvalFrameDefault (tstate=0x7ffff7fb9ce0 <_PyRuntime+475008>, frame=0x7ffff76d5020, throwflag=0) at Python/ceval.c:657
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib64/libthread_db.so.1".
+
+Breakpoint 1, main (argc=32767, argv=0x25) at ./Programs/python.c:284
+Temporary breakpoint 5 at 0x7ffff7a5a08c: file Python/ceval.c, line 657.
+
+Temporary breakpoint 5, _PyEval_EvalFrameDefault (tstate=0x7ffff7fb9ce0 <_PyRuntime+475008>, frame=0x7ffff76d5020, throwflag=0) at Python/ceval.c:657
+$1 = {
+  prev = 0x0,
+  next = 0x0,
+  interp = 0x7ffff7f5c3b0 <_PyRuntime+91728>,
+  _status = {
+    initialized = 1,
+    bound = 1,
+    unbound = 0,
+    bound_gilstate = 1,
+    active = 1,
+    finalizing = 0,
+    cleared = 0,
+    finalized = 0
+  },
+  py_recursion_remaining = 1000,
+  py_recursion_limit = 1000,
+  c_recursion_remaining = 500,
+  recursion_headroom = 0,
+  tracing = 0,
+  what_event = -1,
+  cframe = 0x7ffff7fb9df0 <_PyRuntime+475280>,
+  c_profilefunc = 0x0,
+  c_tracefunc = 0x0,
+  c_profileobj = 0x0,
+  c_traceobj = 0x0,
+  current_exception = 0x0,
+  exc_info = 0x7ffff7fb9de0 <_PyRuntime+475264>,
+  dict = 0x0,
+  gilstate_counter = 1,
+  async_exc = 0x0,
+  thread_id = 140737341373312,
+  native_thread_id = 30087,
+  trash = {
+    delete_nesting = 0,
+    delete_later = 0x0
+  },
+  on_delete = 0x0,
+  on_delete_data = 0x0,
+  coroutine_origin_tracking_depth = 0,
+  async_gen_firstiter = 0x0,
+  async_gen_finalizer = 0x0,
+  context = 0x0,
+  context_ver = 1,
+  id = 1,
+  datastack_chunk = 0x7ffff76d5000,
+  datastack_top = 0x7ffff76d5090,
+  datastack_limit = 0x7ffff76d9000,
+  exc_state = {
+    exc_value = 0x0,
+    previous_item = 0x0
+  },
+  root_cframe = {
+    current_frame = 0x0,
+    previous = 0x0
+  }
+}
+======== instr [-1, 8) ========
+0	CACHE
+151	RESUME
+100	LOAD_CONST
+90	STORE_NAMEHAVE_ARGUMENT
+100	LOAD_CONST
+132	MAKE_FUNCTION
+90	STORE_NAMEHAVE_ARGUMENT
+100	LOAD_CONST
+90	STORE_NAMEHAVE_ARGUMENT
+======== instr [-1, 64) ========
+0	CACHE
+151	RESUME
+100	LOAD_CONST
+90	STORE_NAMEHAVE_ARGUMENT
+100	LOAD_CONST
+132	MAKE_FUNCTION
+90	STORE_NAMEHAVE_ARGUMENT
+100	LOAD_CONST
+90	STORE_NAMEHAVE_ARGUMENT
+100	LOAD_CONST
+90	STORE_NAMEHAVE_ARGUMENT
+100	LOAD_CONST
+90	STORE_NAMEHAVE_ARGUMENT
+100	LOAD_CONST
+97	STORE_GLOBAL
+100	LOAD_CONST
+132	MAKE_FUNCTION
+90	STORE_NAMEHAVE_ARGUMENT
+100	LOAD_CONST
+132	MAKE_FUNCTION
+90	STORE_NAMEHAVE_ARGUMENT
+2	PUSH_NULL
+71	LOAD_BUILD_CLASS
+100	LOAD_CONST
+132	MAKE_FUNCTION
+100	LOAD_CONST
+101	LOAD_NAME
+171	CALL
+17	RESERVED
+0	CACHE
+0	CACHE
+90	STORE_NAMEHAVE_ARGUMENT
+2	PUSH_NULL
+71	LOAD_BUILD_CLASS
+100	LOAD_CONST
+132	MAKE_FUNCTION
+100	LOAD_CONST
+171	CALL
+17	RESERVED
+0	CACHE
+0	CACHE
+90	STORE_NAMEHAVE_ARGUMENT
+105	BUILD_MAP
+90	STORE_NAMEHAVE_ARGUMENT
+100	LOAD_CONST
+97	STORE_GLOBAL
+2	PUSH_NULL
+71	LOAD_BUILD_CLASS
+100	LOAD_CONST
+132	MAKE_FUNCTION
+100	LOAD_CONST
+171	CALL
+17	RESERVED
+0	CACHE
+0	CACHE
+90	STORE_NAMEHAVE_ARGUMENT
+2	PUSH_NULL
+71	LOAD_BUILD_CLASS
+100	LOAD_CONST
+132	MAKE_FUNCTION
+100	LOAD_CONST
+101	LOAD_NAME
+171	CALL
+17	RESERVED
+0	CACHE
+Reading symbols from python3...
+(No debugging symbols found in python3)
+warning: File "/home/enyephy/a/pydebug/.gdbinit" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+	add-auto-load-safe-path /home/enyephy/a/pydebug/.gdbinit
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+To completely disable this security protection add
+	set auto-load safe-path /
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+	info "(gdb)Auto-loading safe path"
+$2 = {
+  cache = 151,
+  op = {
+    code = 151 '\227',
+    arg = 0 '\000'
+  }
+}
+$3 = {
+  cache = 100,
+  op = {
+    code = 100 'd',
+    arg = 0 '\000'
+  }
+}
+$4 = {
+  cache = 90,
+  op = {
+    code = 90 'Z',
+    arg = 0 '\000'
+  }
+}
+$5 = {
+  cache = 356,
+  op = {
+    code = 100 'd',
+    arg = 1 '\001'
+  }
+}
+$6 = {
+  cache = 132,
+  op = {
+    code = 132 '\204',
+    arg = 0 '\000'
+  }
+}
+Reading symbols from python3...
+(No debugging symbols found in python3)
+warning: File "/home/enyephy/a/pydebug/.gdbinit" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+	add-auto-load-safe-path /home/enyephy/a/pydebug/.gdbinit
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+To completely disable this security protection add
+	set auto-load safe-path /
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+	info "(gdb)Auto-loading safe path"
+Redefine command "qinit"? (y or n) [answered Y; input not from terminal]
+Redefine command "cc"? (y or n) [answered Y; input not from terminal]
+Redefine command "pstr"? (y or n) [answered Y; input not from terminal]
+Redefine command "pobj"? (y or n) [answered Y; input not from terminal]
+Redefine command "qi"? (y or n) [answered Y; input not from terminal]
+Redefine command "qst"? (y or n) [answered Y; input not from terminal]
+======== instr [-1, 64) ========
+0	                       CACHE0
+151	                      RESUME0
+100	                  LOAD_CONST0
+90	     STORE_NAMEHAVE_ARGUMENT0
+100	                  LOAD_CONST1
+132	               MAKE_FUNCTION0
+90	     STORE_NAMEHAVE_ARGUMENT1
+100	                  LOAD_CONST2
+90	     STORE_NAMEHAVE_ARGUMENT2
+100	                  LOAD_CONST2
+90	     STORE_NAMEHAVE_ARGUMENT3
+100	                  LOAD_CONST2
+90	     STORE_NAMEHAVE_ARGUMENT4
+100	                  LOAD_CONST2
+97	                STORE_GLOBAL5
+100	                  LOAD_CONST3
+132	               MAKE_FUNCTION0
+90	     STORE_NAMEHAVE_ARGUMENT6
+100	                  LOAD_CONST4
+132	               MAKE_FUNCTION0
+90	     STORE_NAMEHAVE_ARGUMENT7
+2	                   PUSH_NULL0
+71	            LOAD_BUILD_CLASS0
+100	                  LOAD_CONST5
+132	               MAKE_FUNCTION0
+100	                  LOAD_CONST6
+101	                   LOAD_NAME8
+171	                        CALL3
+17	                    RESERVED0
+0	                       CACHE0
+0	                       CACHE0
+90	     STORE_NAMEHAVE_ARGUMENT9
+2	                   PUSH_NULL0
+71	            LOAD_BUILD_CLASS0
+100	                  LOAD_CONST7
+132	               MAKE_FUNCTION0
+100	                  LOAD_CONST8
+171	                        CALL2
+17	                    RESERVED0
+0	                       CACHE0
+0	                       CACHE0
+90	     STORE_NAMEHAVE_ARGUMENT10
+105	                   BUILD_MAP0
+90	     STORE_NAMEHAVE_ARGUMENT11
+100	                  LOAD_CONST2
+97	                STORE_GLOBAL12
+2	                   PUSH_NULL0
+71	            LOAD_BUILD_CLASS0
+100	                  LOAD_CONST9
+132	               MAKE_FUNCTION0
+100	                  LOAD_CONST10
+171	                        CALL2
+17	                    RESERVED0
+0	                       CACHE0
+0	                       CACHE0
+90	     STORE_NAMEHAVE_ARGUMENT13
+2	                   PUSH_NULL0
+71	            LOAD_BUILD_CLASS0
+100	                  LOAD_CONST11
+132	               MAKE_FUNCTION0
+100	                  LOAD_CONST12
+101	                   LOAD_NAME14
+171	                        CALL3
+17	                    RESERVED0
+0	                       CACHE0
+Reading symbols from python3...
+(No debugging symbols found in python3)
+warning: File "/home/enyephy/a/pydebug/.gdbinit" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+	add-auto-load-safe-path /home/enyephy/a/pydebug/.gdbinit
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+To completely disable this security protection add
+	set auto-load safe-path /
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+	info "(gdb)Auto-loading safe path"
+======== instr [-1, 64) ========
+0	                       CACHE0
+151	                      RESUME0
+100	                  LOAD_CONST0
+90	     STORE_NAMEHAVE_ARGUMENT0
+100	                  LOAD_CONST1
+132	               MAKE_FUNCTION0
+90	     STORE_NAMEHAVE_ARGUMENT1
+100	                  LOAD_CONST2
+90	     STORE_NAMEHAVE_ARGUMENT2
+100	                  LOAD_CONST2
+90	     STORE_NAMEHAVE_ARGUMENT3
+100	                  LOAD_CONST2
+90	     STORE_NAMEHAVE_ARGUMENT4
+100	                  LOAD_CONST2
+97	                STORE_GLOBAL5
+100	                  LOAD_CONST3
+132	               MAKE_FUNCTION0
+90	     STORE_NAMEHAVE_ARGUMENT6
+100	                  LOAD_CONST4
+132	               MAKE_FUNCTION0
+90	     STORE_NAMEHAVE_ARGUMENT7
+2	                   PUSH_NULL0
+71	            LOAD_BUILD_CLASS0
+100	                  LOAD_CONST5
+132	               MAKE_FUNCTION0
+100	                  LOAD_CONST6
+101	                   LOAD_NAME8
+171	                        CALL3
+17	                    RESERVED0
+0	                       CACHE0
+0	                       CACHE0
+90	     STORE_NAMEHAVE_ARGUMENT9
+2	                   PUSH_NULL0
+71	            LOAD_BUILD_CLASS0
+100	                  LOAD_CONST7
+132	               MAKE_FUNCTION0
+100	                  LOAD_CONST8
+171	                        CALL2
+17	                    RESERVED0
+0	                       CACHE0
+0	                       CACHE0
+90	     STORE_NAMEHAVE_ARGUMENT10
+105	                   BUILD_MAP0
+90	     STORE_NAMEHAVE_ARGUMENT11
+100	                  LOAD_CONST2
+97	                STORE_GLOBAL12
+2	                   PUSH_NULL0
+71	            LOAD_BUILD_CLASS0
+100	                  LOAD_CONST9
+132	               MAKE_FUNCTION0
+100	                  LOAD_CONST10
+171	                        CALL2
+17	                    RESERVED0
+0	                       CACHE0
+0	                       CACHE0
+90	     STORE_NAMEHAVE_ARGUMENT13
+2	                   PUSH_NULL0
+71	            LOAD_BUILD_CLASS0
+100	                  LOAD_CONST11
+132	               MAKE_FUNCTION0
+100	                  LOAD_CONST12
+101	                   LOAD_NAME14
+171	                        CALL3
+17	                    RESERVED0
+0	                       CACHE0
+======== instr [-1, 64) ========
+0	                       CACHE0
+151	                      RESUME0
+100	                  LOAD_CONST0
+90	     STORE_NAMEHAVE_ARGUMENT0
+100	                  LOAD_CONST1
+132	               MAKE_FUNCTION0
+90	     STORE_NAMEHAVE_ARGUMENT1
+100	                  LOAD_CONST2
+90	     STORE_NAMEHAVE_ARGUMENT2
+100	                  LOAD_CONST2
+90	     STORE_NAMEHAVE_ARGUMENT3
+100	                  LOAD_CONST2
+90	     STORE_NAMEHAVE_ARGUMENT4
+100	                  LOAD_CONST2
+97	                STORE_GLOBAL5
+100	                  LOAD_CONST3
+132	               MAKE_FUNCTION0
+90	     STORE_NAMEHAVE_ARGUMENT6
+100	                  LOAD_CONST4
+132	               MAKE_FUNCTION0
+90	     STORE_NAMEHAVE_ARGUMENT7
+2	                   PUSH_NULL0
+71	            LOAD_BUILD_CLASS0
+100	                  LOAD_CONST5
+132	               MAKE_FUNCTION0
+100	                  LOAD_CONST6
+101	                   LOAD_NAME8
+171	                        CALL3
+17	                    RESERVED0
+0	                       CACHE0
+0	                       CACHE0
+90	     STORE_NAMEHAVE_ARGUMENT9
+2	                   PUSH_NULL0
+71	            LOAD_BUILD_CLASS0
+100	                  LOAD_CONST7
+132	               MAKE_FUNCTION0
+100	                  LOAD_CONST8
+171	                        CALL2
+17	                    RESERVED0
+0	                       CACHE0
+0	                       CACHE0
+90	     STORE_NAMEHAVE_ARGUMENT10
+105	                   BUILD_MAP0
+90	     STORE_NAMEHAVE_ARGUMENT11
+100	                  LOAD_CONST2
+97	                STORE_GLOBAL12
+2	                   PUSH_NULL0
+71	            LOAD_BUILD_CLASS0
+100	                  LOAD_CONST9
+132	               MAKE_FUNCTION0
+100	                  LOAD_CONST10
+171	                        CALL2
+17	                    RESERVED0
+0	                       CACHE0
+0	                       CACHE0
+90	     STORE_NAMEHAVE_ARGUMENT13
+2	                   PUSH_NULL0
+71	            LOAD_BUILD_CLASS0
+100	                  LOAD_CONST11
+132	               MAKE_FUNCTION0
+100	                  LOAD_CONST12
+101	                   LOAD_NAME14
+171	                        CALL3
+17	                    RESERVED0
+0	                       CACHE0
+======== instr [-1, 64) ========
+0	                       CACHE0
+151	                      RESUME0
+100	                  LOAD_CONST0
+90	     STORE_NAMEHAVE_ARGUMENT0
+100	                  LOAD_CONST1
+132	               MAKE_FUNCTION0
+90	     STORE_NAMEHAVE_ARGUMENT1
+100	                  LOAD_CONST2
+90	     STORE_NAMEHAVE_ARGUMENT2
+100	                  LOAD_CONST2
+90	     STORE_NAMEHAVE_ARGUMENT3
+100	                  LOAD_CONST2
+90	     STORE_NAMEHAVE_ARGUMENT4
+100	                  LOAD_CONST2
+97	                STORE_GLOBAL5
+100	                  LOAD_CONST3
+132	               MAKE_FUNCTION0
+90	     STORE_NAMEHAVE_ARGUMENT6
+100	                  LOAD_CONST4
+132	               MAKE_FUNCTION0
+90	     STORE_NAMEHAVE_ARGUMENT7
+2	                   PUSH_NULL0
+71	            LOAD_BUILD_CLASS0
+100	                  LOAD_CONST5
+132	               MAKE_FUNCTION0
+100	                  LOAD_CONST6
+101	                   LOAD_NAME8
+171	                        CALL3
+17	                    RESERVED0
+0	                       CACHE0
+0	                       CACHE0
+90	     STORE_NAMEHAVE_ARGUMENT9
+2	                   PUSH_NULL0
+71	            LOAD_BUILD_CLASS0
+100	                  LOAD_CONST7
+132	               MAKE_FUNCTION0
+100	                  LOAD_CONST8
+171	                        CALL2
+17	                    RESERVED0
+0	                       CACHE0
+0	                       CACHE0
+90	     STORE_NAMEHAVE_ARGUMENT10
+105	                   BUILD_MAP0
+90	     STORE_NAMEHAVE_ARGUMENT11
+100	                  LOAD_CONST2
+97	                STORE_GLOBAL12
+2	                   PUSH_NULL0
+71	            LOAD_BUILD_CLASS0
+100	                  LOAD_CONST9
+132	               MAKE_FUNCTION0
+100	                  LOAD_CONST10
+171	                        CALL2
+17	                    RESERVED0
+0	                       CACHE0
+0	                       CACHE0
+90	     STORE_NAMEHAVE_ARGUMENT13
+2	                   PUSH_NULL0
+71	            LOAD_BUILD_CLASS0
+100	                  LOAD_CONST11
+132	               MAKE_FUNCTION0
+100	                  LOAD_CONST12
+101	                   LOAD_NAME14
+171	                        CALL3
+17	                    RESERVED0
+0	                       CACHE0
+Reading symbols from python3...
+(No debugging symbols found in python3)
+warning: File "/home/enyephy/a/pydebug/.gdbinit" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+	add-auto-load-safe-path /home/enyephy/a/pydebug/.gdbinit
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+To completely disable this security protection add
+	set auto-load safe-path /
+line to your configuration file "/home/enyephy/.config/gdb/gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+	info "(gdb)Auto-loading safe path"
+Redefine command "qinit"? (y or n) [answered Y; input not from terminal]
+Redefine command "cc"? (y or n) [answered Y; input not from terminal]
+Redefine command "pstr"? (y or n) [answered Y; input not from terminal]
+Redefine command "pobj"? (y or n) [answered Y; input not from terminal]
+Redefine command "qi"? (y or n) [answered Y; input not from terminal]
+Redefine command "qst"? (y or n) [answered Y; input not from terminal]
+======== instr [-1, 64) ========
+0	CACHE                       0
+151	RESUME                      0
+100	LOAD_CONST                  0
+90	STORE_NAMEHAVE_ARGUMENT     0
+100	LOAD_CONST                  1
+132	MAKE_FUNCTION               0
+90	STORE_NAMEHAVE_ARGUMENT     1
+100	LOAD_CONST                  2
+90	STORE_NAMEHAVE_ARGUMENT     2
+100	LOAD_CONST                  2
+90	STORE_NAMEHAVE_ARGUMENT     3
+100	LOAD_CONST                  2
+90	STORE_NAMEHAVE_ARGUMENT     4
+100	LOAD_CONST                  2
+97	STORE_GLOBAL                5
+100	LOAD_CONST                  3
+132	MAKE_FUNCTION               0
+90	STORE_NAMEHAVE_ARGUMENT     6
+100	LOAD_CONST                  4
+132	MAKE_FUNCTION               0
+90	STORE_NAMEHAVE_ARGUMENT     7
+2	PUSH_NULL                   0
+71	LOAD_BUILD_CLASS            0
+100	LOAD_CONST                  5
+132	MAKE_FUNCTION               0
+100	LOAD_CONST                  6
+101	LOAD_NAME                   8
+171	CALL                        3
+17	RESERVED                    0
+0	CACHE                       0
+0	CACHE                       0
+90	STORE_NAMEHAVE_ARGUMENT     9
+2	PUSH_NULL                   0
+71	LOAD_BUILD_CLASS            0
+100	LOAD_CONST                  7
+132	MAKE_FUNCTION               0
+100	LOAD_CONST                  8
+171	CALL                        2
+17	RESERVED                    0
+0	CACHE                       0
+0	CACHE                       0
+90	STORE_NAMEHAVE_ARGUMENT     10
+105	BUILD_MAP                   0
+90	STORE_NAMEHAVE_ARGUMENT     11
+100	LOAD_CONST                  2
+97	STORE_GLOBAL                12
+2	PUSH_NULL                   0
+71	LOAD_BUILD_CLASS            0
+100	LOAD_CONST                  9
+132	MAKE_FUNCTION               0
+100	LOAD_CONST                  10
+171	CALL                        2
+17	RESERVED                    0
+0	CACHE                       0
+0	CACHE                       0
+90	STORE_NAMEHAVE_ARGUMENT     13
+2	PUSH_NULL                   0
+71	LOAD_BUILD_CLASS            0
+100	LOAD_CONST                  11
+132	MAKE_FUNCTION               0
+100	LOAD_CONST                  12
+101	LOAD_NAME                   14
+171	CALL                        3
+17	RESERVED                    0
+0	CACHE                       0
