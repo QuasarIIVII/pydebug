@@ -146,7 +146,7 @@ def main():
 	for i in range(test_dataset.targets.shape[0]):
 		revcv[test_dataset.targets[i]].append(i)
 
-	bnum = revcv[5][2]
+	bnum = revcv[3][2]
 	model_in = next(iter(test_loader))[0]
 	data = model_in.to(device)
 	model_out = model(data)
@@ -173,6 +173,8 @@ def main():
 	feat = model_out[bnum].view(1,1,1,10)
 	grid = make_grid(feat, nrow=4, normalize=True, scale_each=True)
 	print(f(grid[0]), file=sys.stderr)
+
+	print(model_out.argmax(dim=1)[bnum].item())
 
 	for handle in hook_handle:
 		handle.remove()
