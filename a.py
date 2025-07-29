@@ -96,8 +96,8 @@ def main():
 		transform=transform
 	)
 
-	train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
-	test_loader  = DataLoader(test_dataset,  batch_size=1000, shuffle=False)
+	train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True, num_workers=8)
+	test_loader  = DataLoader(test_dataset,  batch_size=1000, shuffle=False, num_workers=8)
 
 	model = DNN().to(device)
 	optimizer = torch.optim.SGD(model.parameters(), lr=0.01, momentum=0.5)
