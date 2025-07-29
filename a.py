@@ -114,11 +114,11 @@ def main():
 		weight_norms.append(norm)
 		print(f"Epoch {epoch}, Weight Norm: {norm:.4f}")
 
-	plt.plot(range(1, 6), weight_norms, marker='o')
-	plt.xlabel('Epoch')
-	plt.ylabel('L2 Norm of fc1 Weights')
-	plt.title('Weight Norm Over Epochs')
-	plt.show()
+	# plt.plot(range(1, 6), weight_norms, marker='o')
+	# plt.xlabel('Epoch')
+	# plt.ylabel('L2 Norm of fc1 Weights')
+	# plt.title('Weight Norm Over Epochs')
+	# plt.show()
 
 if __name__ == "__main__":
 	mp.set_start_method("fork")
