@@ -11,7 +11,7 @@ def main():
 	)
 	print(f"Using device: {device}", flush=True)
 
-	a = torch.tensor([1,2,3], dtype=torch.uint64)
+	a = torch.tensor([[1,2,3], [7,8,9]], dtype=torch.uint64)
 	print(a, flush=True)
 	li = a.tolist()
 	print(li, flush=True)

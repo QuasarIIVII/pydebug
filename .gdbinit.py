@@ -41,6 +41,30 @@ class qinit(gdb.Command):
 
 qinit()
 
+class qmm_init(gdb.Command):
+	def __init__(self):
+		gdb.Command.__init__(
+			self,
+			"qmm_init",
+			gdb.COMMAND_DATA,
+			gdb.COMPLETE_NONE
+		)
+
+	def invoke(self, arg, is_tty):
+		try:
+			f_type = gdb.parse_and_eval("(void*(*)(size_t))0").type
+			malloc = gdb.parse_and_eval("malloc").cast(f_type)
+			gdb.set_convenience_variable(
+				"mm",
+				malloc.dereference()(1<<20)
+			)
+		except Exception as e:
+			import traceback
+			tb = traceback.extract_tb(e.__traceback__)
+			print(f"exception: {str(e)} @ {tb[-1].lineno}")
+
+qmm_init()
+
 class cc(gdb.Command):
 	def __init__(self):
 		gdb.Command.__init__(
@@ -52,7 +76,8 @@ class cc(gdb.Command):
 
 	def invoke(self, arg, is_tty):
 		argv = gdb.string_to_argv(arg)
-		a = ["_PyEval_EvalFrameDefault", "*_ZN5torch8autogradL18THPVariable_tensorEP7_objectS2_S2_", "*_Z16THPVariable_WrapN2at10TensorBaseE+37"]
+		a = ["_PyEval_EvalFrameDefault", "*_ZN5torch8autogradL18THPVariable_tensorEP7_objectS2_S2_"]
+		a += ["*_Z16THPVariable_WrapN2at10TensorBaseE+37", "*_ZN5torch8autogradL18THPVariable_tolistEP7_objectS2_"]
 
 		x = a[int(argv[0])] if len(argv) == 1 else a[0]
 
@@ -317,6 +342,28 @@ class pautoex(gdb.Command):
 
 pautoex()
 
+class cvt_thp2list(gdb.Command):
+	def __init__(self):
+		gdb.Command.__init__(
+			self,
+			"cvt_thp2list",
+			gdb.COMMAND_DATA,
+			gdb.COMPLETE_EXPRESSION
+		)
+
+	def invoke(self, arg, is_tty):
+		try:
+			# Call THPVariable_tolist(PyObject*, PyObject*)
+			res = gdb.parse_and_eval("_ZN5torch8autogradL18THPVariable_tolistEP7_objectS2_").cast(
+				gdb.parse_and_eval("(PyObject*(*)(PyObject*, PyObject*))0").type
+			).dereference()(gdb.parse_and_eval(arg), 0)
+			idx = gdb.add_history(res)
+			print(f"${idx} = {res}")
+		except Exception as e:
+			print(f"exception: {str(e)}")
+
+cvt_thp2list()
+
 class qi(gdb.Command):
 	def __init__(self):
 		gdb.Command.__init__(
@@ -454,17 +501,19 @@ class qargs(gdb.Command):
 	def invoke(self, arg, is_tty):
 		# argv = gdb.string_to_argv(arg)
 
-		src = gdb.parse_and_eval("frame").dereference()["localsplus"]
+		frame = gdb.parse_and_eval("frame")
+		src = frame.dereference()["localsplus"]
+		n = int(frame.dereference()["f_code"].dereference()["co_nlocalsplus"])
 
-		print("======== args ========")
+		print("======== args [0, {n}) ========")
 		if not int(src.cast(cuintptr_t())):
 			print("NULL")
 
-		i = 0
-		while True:
+		for i in range(n):
 			ob = src[i]
 			if not int(ob.cast(cuintptr_t())):
-				break
+				print(f"{i:<4}null")
+				continue
 
 			print(f"{i:<4}{ob.dereference()['ob_refcnt_split'][0]}, {ob.dereference()['ob_refcnt_split'][1]}")
 			a = ob.cast(gdb.lookup_type('PyObject').pointer())
@@ -473,8 +522,6 @@ class qargs(gdb.Command):
 			print(' '*4 + f"{a.dereference()['ob_type']}")
 			print(' '*4 + "val = ", end='')
 			print(pauto.f(a))
-
-			i+=1
 
 		print(end='',flush=True)
 
