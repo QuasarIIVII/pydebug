@@ -2,5 +2,6 @@ cpython/
 pytorch/
 legacy/
 data/
+build/
 log.txt
 out.txt
