@@ -1,5 +1,6 @@
 cpython/
 pytorch/
 legacy/
+data/
 log.txt
 out.txt

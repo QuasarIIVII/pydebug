@@ -424,7 +424,7 @@ class qst(gdb.Command):
 		print(f"======== stack [-{s}, -{e}] ========")
 
 		for i in range(s, e):
-			ob = gdb.parse_and_eval("stack_pointer")[-i]
+			ob = gdb.parse_and_eval("_PyEval_EvalFrameDefault::stack_pointer")[-i]
 			if int(ob.cast(cuintptr_t())) == 0xffffffff:
 				break
 
@@ -457,7 +457,7 @@ class qconsts(gdb.Command):
 		# argv = gdb.string_to_argv(arg)
 
 		src = (
-			gdb.parse_and_eval("frame")
+			gdb.parse_and_eval("_PyEval_EvalFrameDefault::frame")
 			.dereference()['f_code']
 			.dereference()['co_consts']
 		)
@@ -501,11 +501,11 @@ class qargs(gdb.Command):
 	def invoke(self, arg, is_tty):
 		# argv = gdb.string_to_argv(arg)
 
-		frame = gdb.parse_and_eval("frame")
+		frame = gdb.parse_and_eval("_PyEval_EvalFrameDefault::frame")
 		src = frame.dereference()["localsplus"]
 		n = int(frame.dereference()["f_code"].dereference()["co_nlocalsplus"])
 
-		print("======== args [0, {n}) ========")
+		print(f"======== args [0, {n}) ========")
 		if not int(src.cast(cuintptr_t())):
 			print("NULL")
 
@@ -537,7 +537,7 @@ class qlocals(gdb.Command):
 		)
 
 	def invoke(self, arg, is_tty):
-		print(printers.PyDict(gdb.parse_and_eval("frame").dereference()["f_locals"], "locals"))
+		print(printers.PyDict(gdb.parse_and_eval("_PyEval_EvalFrameDefault::frame").dereference()["f_locals"], "locals"))
 
 qlocals()
 
@@ -556,7 +556,7 @@ class qbt(gdb.Command):
 		print("======== backtrace ========")
 
 		i = 0
-		a = gdb.parse_and_eval('frame')
+		a = gdb.parse_and_eval("_PyEval_EvalFrameDefault::frame")
 		while True:
 			prev = a.dereference()['previous']
 			if not int(prev.cast(cuintptr_t())):
@@ -607,9 +607,9 @@ class qfin(gdb.Command):
 	def invoke(self, arg, is_tty):
 		# argv = gdb.string_to_argv(arg)
 
-		a = gdb.parse_and_eval("frame").dereference()["previous"]
+		a = gdb.parse_and_eval("_PyEval_EvalFrameDefault::frame").dereference()["previous"]
 
-		while gdb.parse_and_eval("frame") != a:
+		while gdb.parse_and_eval("_PyEval_EvalFrameDefault::frame") != a:
 			gdb.execute("next")
 
 qfin()
