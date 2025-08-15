@@ -14,7 +14,7 @@ build:
     export LDFLAGS="-L${PREFIX}/lib"
     mkdir build && cd build
     ./configure --prefix=$PREFIX --with-pydebug --with-assertions --enable-shared --with-openssl=$PREFIX || exit 1
-    make -j$(nproc)
+    make -j$(nproc) || exit 1
     ln -s build/python3 build/python
     make install -j$(nproc)
 
