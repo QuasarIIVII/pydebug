@@ -1,18 +1,22 @@
 package:
-  name: pydbg
-  version: "3.12.O0"
+  name: python
+  version: "3.12"
 
 source:
-  path: /home/enyephy/a/pydebug/cpython
+  path: ./cpython
 
 build:
   number: 0
+  string: o0_{{ PKG_BUILDNUM }}
   script: |
     git switch 3.12
     export CFLAGS="-g3 -O0 -gdwarf-2 -I${PREFIX}/include"
     export LDFLAGS="-L${PREFIX}/lib"
+    mkdir build && cd build
     ./configure --prefix=$PREFIX --with-pydebug --with-assertions --enable-shared --with-openssl=$PREFIX || exit 1
-    make -j$(nproc) && make install -j$(nproc)
+    make -j$(nproc)
+    ln -s build/python3 build/python
+    make install -j$(nproc)
 
 requirements:
   host:

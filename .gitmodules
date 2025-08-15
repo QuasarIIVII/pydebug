@@ -1,0 +1,3 @@
+[submodule "cenv/cpython"]
+	path = cenv/cpython
+	url = https://github.com/python/cpython.git
