@@ -10,22 +10,43 @@ source:
 build:
   number: 0
   string: o0_{{ PKG_BUILDNUM }}
-  script: |
-    export CFLAGS="-g3 -O0 -gdwarf-2 -I${PREFIX}/include"
-    export LDFLAGS="-L${PREFIX}/lib"
-    mkdir build && cd build
-    ../configure --prefix=$PREFIX --with-pydebug --with-assertions --enable-shared --with-openssl=$PREFIX || exit 1
-    make -j$(nproc) || exit 1
-    ln -s python3 python
-    make install -j$(nproc)
 
 requirements:
+  build:
+    - pkg-config
+    - make
   host:
     - libffi
     - openssl
+    - zlib
+    - bzip2
+    - xz
+    - gdbm
+    - sqlite
+    - readline
+    - ncurses
+    - tk
+    - libuuid
+    - libnsl
+    - xorg-libx11
+    - libnsl
+    - libtirpc
   run:
     - libffi
     - openssl
+    - zlib
+    - bzip2
+    - xz
+    - gdbm
+    - sqlite
+    - readline
+    - ncurses
+    - tk
+    - libuuid
+    - libnsl
+    - xorg-libx11
+    - libnsl
+    - libtirpc
 
 about:
   home: https://www.python.org/
