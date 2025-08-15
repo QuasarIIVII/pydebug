@@ -3,7 +3,9 @@ package:
   version: "3.12"
 
 source:
-  path: ./cpython
+  git_url: ./cpython
+  git_rev: HEAD
+  git_depth: 0
 
 build:
   number: 0
@@ -11,14 +13,10 @@ build:
   script: |
     export CFLAGS="-g3 -O0 -gdwarf-2 -I${PREFIX}/include"
     export LDFLAGS="-L${PREFIX}/lib"
-    vers=$(git rev-parse HEAD)
-    rm -rf * .*
-    git clone https://github.com/python/cpython.git
-    mkdir cpython/build && cd cpython/build
-    git switch $vers
+    mkdir build && cd build
     ../configure --prefix=$PREFIX --with-pydebug --with-assertions --enable-shared --with-openssl=$PREFIX || exit 1
     make -j$(nproc) || exit 1
-    ln -s build/python3 build/python
+    ln -s python3 python
     make install -j$(nproc)
 
 requirements:
