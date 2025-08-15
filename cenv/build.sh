@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
+export CFLAGS="${CFLAGS:-} -g3 -O0 -gdwarf-2 -I${PREFIX}/include"
 export CPPFLAGS="${CPPFLAGS:-} -I${PREFIX}/include -I${PREFIX}/include/gdbm"
 export LDFLAGS="${LDFLAGS:-} -L${PREFIX}/lib -Wl,-rpath,${PREFIX}/lib"
 export LD_RUN_PATH="${PREFIX}/lib"

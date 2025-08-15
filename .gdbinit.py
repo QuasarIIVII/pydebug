@@ -34,7 +34,7 @@ class qinit(gdb.Command):
 
 	def invoke(self, arg, is_tty):
 		argv = gdb.string_to_argv(arg)
-		gdb.execute("dir cenv/cpython")
+		gdb.execute("dir cenv/cpython/Python")
 		gdb.execute("b *main")
 		gdb.execute(f"run {argv[0]} >> log.txt")
 		gdb.execute("b pyrun_file")
