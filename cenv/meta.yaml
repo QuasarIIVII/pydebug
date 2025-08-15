@@ -13,7 +13,7 @@ build:
     export CFLAGS="-g3 -O0 -gdwarf-2 -I${PREFIX}/include"
     export LDFLAGS="-L${PREFIX}/lib"
     mkdir build && cd build
-    ./configure --prefix=$PREFIX --with-pydebug --with-assertions --enable-shared --with-openssl=$PREFIX || exit 1
+    ../configure --prefix=$PREFIX --with-pydebug --with-assertions --enable-shared --with-openssl=$PREFIX || exit 1
     make -j$(nproc) || exit 1
     ln -s build/python3 build/python
     make install -j$(nproc)
