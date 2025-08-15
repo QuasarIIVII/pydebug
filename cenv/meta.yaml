@@ -9,7 +9,6 @@ build:
   number: 0
   string: o0_{{ PKG_BUILDNUM }}
   script: |
-    git switch 3.12
     export CFLAGS="-g3 -O0 -gdwarf-2 -I${PREFIX}/include"
     export LDFLAGS="-L${PREFIX}/lib"
     mkdir build && cd build
