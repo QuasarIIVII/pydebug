@@ -9,7 +9,7 @@ source:
 
 build:
   number: 0
-  string: o0_{{ PKG_BUILDNUM }}
+  string: o0_{{ PKG_BUILDNUM }}_cpython
 
 requirements:
   build:
@@ -47,6 +47,7 @@ requirements:
     - xorg-libx11
     - libnsl
     - libtirpc
+    - bzip2
 
 about:
   home: https://www.python.org/

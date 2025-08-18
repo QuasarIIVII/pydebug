@@ -76,7 +76,7 @@ class DNN(nn.Module):
 def f(tensor):
 	s = ">>>DATA\n"
 	s += str(tensor.shape[0]) + ' ' + str(tensor.shape[1]) \
-	+ ' ' + str(tensor.min().item()) + ' ' + str(tensor.mean().item()) + '\n'
+	+ ' ' + str(tensor.min().item()) + ' ' + str(tensor.max().item()) + '\n'
 	for v in tensor:
 		for a in v:
 			s += ' ' + str(a.item())
