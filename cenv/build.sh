@@ -3,7 +3,7 @@ set -euxo pipefail
 
 export CFLAGS="${CFLAGS:-} -g3 -O0 -gdwarf-2 -I${PREFIX}/include"
 export CPPFLAGS="${CPPFLAGS:-} -I${PREFIX}/include -I${PREFIX}/include/gdbm"
-export LDFLAGS="${LDFLAGS:-} -L${PREFIX}/lib -Wl,-rpath,${PREFIX}/lib"
+export LDFLAGS="${LDFLAGS:-} -g -rdynamic -L${PREFIX}/lib -Wl,-rpath,${PREFIX}/lib"
 export LD_RUN_PATH="${PREFIX}/lib"
 export PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig:${PREFIX}/share/pkgconfig:${PKG_CONFIG_PATH:-}"
 

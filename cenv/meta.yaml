@@ -51,4 +51,4 @@ requirements:
 about:
   home: https://www.python.org/
   license: PSF
-  summary: "Custom-built CPython for my tweaks"
+  summary: "Debug-friendly CPython"
