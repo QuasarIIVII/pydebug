@@ -2,10 +2,10 @@
 PyDebug is a hands-on playground for debugging **CPython** and **PyTorch** with GDB.  
 It ships:
 
-- A Conda recipe that builds a **debug-friendly CPython** (symbols, assertions, no optimizations).
-- A rich **GDB extension** (`.gdbinit.py`) with commands to inspect Python objects, frames, bytecode, and PyTorch tensors.
-- Minimal **test programs** (Python + C++20) you can run under GDB.
-- Small **CLI helpers** (color/highlight/visualize outputs).
+- A Conda recipe that builds a debug-friendly CPython (symbols, assertions, no optimizations).
+- A rich GDB extension (`.gdbinit.py`) with commands to inspect Python objects, frames, bytecode, and PyTorch tensors.
+- Minimal test programs (Python + C++20) you can run under GDB.
+- Small CLI helpers (color/highlight/visualize outputs).
 
 # Prerequisite
 - Linux x64 system
