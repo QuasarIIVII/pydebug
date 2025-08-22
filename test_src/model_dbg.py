@@ -123,7 +123,7 @@ def main():
 	criterion = nn.NLLLoss()
 
 	weight_norms = []
-	for epoch in range(1, 1+1):
+	for epoch in range(1, 6+1):
 		train([device, model, train_loader, optimizer, criterion], epoch)
 		test([device, model, test_loader, criterion])
 

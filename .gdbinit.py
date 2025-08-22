@@ -1,6 +1,11 @@
 import gdb
 import re
 
+class NULL_t():
+	pass
+
+NULL = NULL_t()
+
 def cuintptr_t():
 	return gdb.lookup_type('uintptr_t')
 
@@ -76,8 +81,9 @@ class cc(gdb.Command):
 
 	def invoke(self, arg, is_tty):
 		argv = gdb.string_to_argv(arg)
-		a = ["_PyEval_EvalFrameDefault", "*_ZN5torch8autogradL18THPVariable_tensorEP7_objectS2_S2_"]
-		a += ["*_Z16THPVariable_WrapN2at10TensorBaseE+37", "*_ZN5torch8autogradL18THPVariable_tolistEP7_objectS2_"]
+		0 ; a  = ["_PyEval_EvalFrameDefault", "*_ZN5torch8autogradL18THPVariable_tensorEP7_objectS2_S2_"]
+		2 ; a += ["*_Z16THPVariable_WrapN2at10TensorBaseE+37", "*_ZN5torch8autogradL18THPVariable_tolistEP7_objectS2_"]
+		4 ; a += ["*builtin___build_class__"]
 
 		x = a[int(argv[0])] if len(argv) == 1 else a[0]
 
@@ -115,41 +121,133 @@ class pobj(gdb.Command):
 
 pobj()
 
-class printers():
+class pyVal_getters():
 	# Simple Types
 	@classmethod
 	def PyUnicode(cls, ob):
 		v = ob.cast(gdb.lookup_type("PyASCIIObject").pointer()) + 1
 		v = v.cast(gdb.lookup_type("char").pointer())
-
 		return v.string();
 
 	@classmethod
 	def PyLong(cls, ob):
 		PyLongObjectPtr_t = gdb.lookup_type("PyLongObject").pointer()
+		return int(ob.cast(PyLongObjectPtr_t)["long_value"]["ob_digit"].dereference())
 
-		return str(ob.cast(PyLongObjectPtr_t)["long_value"]["ob_digit"].dereference())
+	@classmethod
+	def PyBool(cls, ob):
+		return ob == gdb.parse_and_eval("&_Py_TrueStruct")
+
+	# Cell Type
+	@classmethod
+	def PyCell(cls, ob):
+		return ob.cast(gdb.lookup_type("PyCellObject").pointer()).dereference()["ob_ref"]
+
+	@classmethod
+	def PyCell_r(cls, ob, lv=0): # recursive
+		if not int(ob):
+			return NULL, lv
+
+		if ob.dereference()["ob_type"] == gdb.parse_and_eval("&PyCell_Type"):
+			return cls.PyCell_r(
+				ob.cast(gdb.lookup_type("PyCellObject").pointer()).dereference()["ob_ref"],
+				lv+1
+			)
+		else:
+			return ob, lv
+
+	# None Type
+	@classmethod
+	def PyNone(cls, ob):
+		return None
+
+	# Builtin Data Structure Types
+	@classmethod
+	def PyList(cls, ob):
+		ob = ob.cast(gdb.lookup_type("PyListObject").pointer())
+		sz = ob.dereference()["ob_base"]["ob_size"]
+
+		src = ob.dereference()["ob_item"]
+
+		res = []
+		for i in range(0, sz):
+			res.append(src[i].cast(gdb.lookup_type("PyObject").pointer()))
+
+		return res
+
+	@classmethod
+	def PyTuple(cls, ob):
+		ob = ob.cast(gdb.lookup_type("PyTupleObject").pointer())
+		sz = ob.dereference()["ob_base"]["ob_size"]
+
+		src = ob.dereference()["ob_item"]
+
+		res = []
+		for i in range(0, sz):
+			res.append(src[i].cast(gdb.lookup_type("PyObject").pointer()))
+
+		return res
+
+	@classmethod
+	def PyDict(cls, ob):
+		ob = (
+			gdb.parse_and_eval("PyDict_Items")(ob)
+			.cast(gdb.lookup_type("PyListObject").pointer())
+		)
+		sz = ob.dereference()["ob_base"]["ob_size"]
+		src = ob.dereference()["ob_item"]
+
+		PyTupleObjectPtr_t = gdb.lookup_type("PyTupleObject").pointer()
+
+		res = []
+		for i in range(0, sz):
+			if not int(src[i]):
+				res.append(None)
+				continue
+
+			ob = src[i].cast(PyTupleObjectPtr_t).dereference()["ob_item"]
+			res.append((ob[0], ob[1]))
+
+		return res
+
+class printers():
+	# Simple Types
+	@classmethod
+	def PyUnicode(cls, ob):
+		return pyVal_getters.PyUnicode(ob)
+
+	@classmethod
+	def PyLong(cls, ob):
+		return str(pyVal_getters.PyLong(ob))
 
 	@classmethod
 	def PyBool(cls, ob):
 		return str(
 			"True"
-			if ob == gdb.parse_and_eval("&_Py_TrueStruct")
+			if pyVal_getters.PyBool(ob)
 			else "False"
 		)
 
 	# Code Types
 	@classmethod
 	def PyCode(cls, ob):
-		return cls.PyUnicode(ob.cast(gdb.lookup_type("PyCodeObject").pointer())["co_name"])
+		return cls.PyUnicode(ob.cast(gdb.lookup_type("PyCodeObject").pointer())["co_qualname"])
 
 	@classmethod
 	def PyFunction(cls, ob):
-		return cls.PyUnicode(ob.cast(gdb.lookup_type("PyFunctionObject").pointer())["func_name"])
+		return cls.PyUnicode(ob.cast(gdb.lookup_type("PyFunctionObject").pointer())["func_qualname"])
 
 	@classmethod
 	def PyModule(cls, ob):
 		return cls.PyUnicode(ob.cast(gdb.lookup_type("PyModuleObject").pointer())["md_name"])
+
+	# Cell Type
+	@classmethod
+	def PyCell(cls, ob):
+		return "Cell{ " + pauto.f(
+			pyVal_getters.PyCell(ob),
+			True
+		) + " }"
 
 	# None Type
 	@classmethod
@@ -159,19 +257,16 @@ class printers():
 	# Builtin Data Structure Types
 	@classmethod
 	def PyList(cls, ob):
-		ob = ob.cast(gdb.lookup_type("PyListObject").pointer())
-		sz = ob.dereference()["ob_base"]["ob_size"]
+		li = pyVal_getters.PyList(ob)
+		sz = len(li)
 
 		s = f"======== PyList (size = {sz}) ========\n"
 
-		src = ob.dereference()["ob_item"]
-
-		for i in range(0, sz):
-			if not int(src[i].cast(cuintptr_t())):
-				s += "NULL\n"
+		for i, a in enumerate(li):
+			if not int(a):
+				s += f"{i:<4}NULL\n"
 				continue
 
-			a = src[i].cast(gdb.lookup_type("PyObject").pointer())
 			idx = gdb.add_history(a)
 			s += f"{i:<4}{a.dereference()['ob_refcnt_split'][0]}, {a.dereference()['ob_refcnt_split'][1]}\n"
 			s += ' '*4 + f"${idx} = {a}\n"
@@ -185,19 +280,16 @@ class printers():
 
 	@classmethod
 	def PyTuple(cls, ob):
-		ob = ob.cast(gdb.lookup_type("PyTupleObject").pointer())
-		sz = ob.dereference()["ob_base"]["ob_size"]
+		tpl = pyVal_getters.PyTuple(ob)
+		sz = len(tpl)
 
 		s = f"======== PyTuple (size = {sz}) ========\n"
 
-		src = ob.dereference()["ob_item"]
-
-		for i in range(0, sz):
-			if not int(src[i].cast(cuintptr_t())):
-				s += "NULL\n"
+		for i, a in enumerate(tpl):
+			if not int(a):
+				s += f"{i:<4}NULL\n"
 				continue
 
-			a = src[i].cast(gdb.lookup_type("PyObject").pointer())
 			idx = gdb.add_history(a)
 			s += f"{i:<4}{a.dereference()['ob_refcnt_split'][0]}, {a.dereference()['ob_refcnt_split'][1]}\n"
 			s += ' '*4 + f"${idx} = {a}\n"
@@ -211,26 +303,18 @@ class printers():
 
 	@classmethod
 	def PyDict(cls, ob, title="PyDict"):
-		ob = (
-			gdb.parse_and_eval("PyDict_Items")(ob)
-			.cast(gdb.lookup_type("PyListObject").pointer())
-		)
-
-		sz = ob.dereference()["ob_base"]["ob_size"]
+		di = pyVal_getters.PyDict(ob)
+		sz = len(di)
 
 		s = f"======== {title} (size = {sz}) ========\n"
 
-		PyTupleObjectPtr_t = gdb.lookup_type("PyTupleObject").pointer()
-		src = ob.dereference()["ob_item"]
-
-		for i in range(0, sz):
+		for i, ob in enumerate(di):
 			ss = [["" for _ in range(4)] for _ in range(2)]
 
-			if not int(src[i].cast(cuintptr_t())):
-				s += "NULL\n"
+			if ob is None:
+				s += f"{i:<4}NULL\n"
 				continue
 
-			ob = src[i].cast(PyTupleObjectPtr_t).dereference()["ob_item"]
 			if not int(ob[0].cast(cuintptr_t())):
 				ss[0][0] = "NULL"
 			else:
@@ -291,6 +375,8 @@ class pauto(gdb.Command):
 			ob_type2int("&PyCode_Type")		: printers.PyCode,
 			ob_type2int("&PyFunction_Type")	: printers.PyFunction,
 			ob_type2int("&PyModule_Type")	: printers.PyModule,
+			# Cell Type
+			ob_type2int("&PyCell_Type")		: printers.PyCell,
 			# None Type
 			ob_type2int("&_PyNone_Type")	: printers.PyNone,
 		}
@@ -489,11 +575,11 @@ class qconsts(gdb.Command):
 
 qconsts()
 
-class qargs(gdb.Command):
+class qflocals(gdb.Command):
 	def __init__(self):
 		gdb.Command.__init__(
 			self,
-			"qargs",
+			"qflocals",
 			gdb.COMMAND_DATA,
 			gdb.COMPLETE_NONE
 		)
@@ -505,14 +591,22 @@ class qargs(gdb.Command):
 		src = frame.dereference()["localsplus"]
 		n = int(frame.dereference()["f_code"].dereference()["co_nlocalsplus"])
 
-		print(f"======== args [0, {n}) ========")
+		localsplusnames = pyVal_getters.PyTuple(
+			frame
+			.dereference()["f_code"]
+			.dereference()["co_localsplusnames"]
+		)
+		localsplusnames = [pyVal_getters.PyUnicode(a) for a in localsplusnames]
+
+		print(f"======== localsplus [0, {n}) ========")
 		if not int(src.cast(cuintptr_t())):
 			print("NULL")
 
 		for i in range(n):
 			ob = src[i]
 			if not int(ob.cast(cuintptr_t())):
-				print(f"{i:<4}null")
+				print(f"{i:<4}name = {localsplusnames[i]}")
+				print(' '*4 + "null")
 				continue
 
 			print(f"{i:<4}{ob.dereference()['ob_refcnt_split'][0]}, {ob.dereference()['ob_refcnt_split'][1]}")
@@ -520,12 +614,13 @@ class qargs(gdb.Command):
 			idx = gdb.add_history(a)
 			print(' '*4 + f"${idx} = {a}")
 			print(' '*4 + f"{a.dereference()['ob_type']}")
+			print(' '*4 + f"name = {localsplusnames[i]}")
 			print(' '*4 + "val = ", end='')
 			print(pauto.f(a))
 
 		print(end='',flush=True)
 
-qargs()
+qflocals()
 
 class qlocals(gdb.Command):
 	def __init__(self):
@@ -537,7 +632,10 @@ class qlocals(gdb.Command):
 		)
 
 	def invoke(self, arg, is_tty):
-		print(printers.PyDict(gdb.parse_and_eval("_PyEval_EvalFrameDefault::frame").dereference()["f_locals"], "locals"))
+		print(printers.PyDict(
+			gdb.parse_and_eval("_PyEval_EvalFrameDefault::frame").dereference()["f_locals"],
+			"locals")
+		)
 
 qlocals()
 
@@ -842,3 +940,109 @@ class bpoints:
 		self.qc(self)
 
 bpoints()
+
+class qlookup(gdb.Command):
+	def __init__(self):
+		gdb.Command.__init__(
+			self,
+			"qlookup",
+			gdb.COMMAND_RUNNING,
+			gdb.COMPLETE_NONE
+		)
+
+		self.pat = re.compile(r"^\-([a-z]+)$")
+
+	def invoke(self, arg, is_tty):
+		argv = gdb.string_to_argv(arg)
+
+		target = None
+		in_builtin = False
+		in_global = False
+		in_local = False
+		in_flocal = False
+
+		for a in argv:
+			m = self.pat.match(a)
+			if m:
+				for b in m.group(1):
+					if   b == 'b': in_builtin = True
+					elif b == 'g': in_global = True
+					elif b == 'l': in_local = True
+					elif b == 'f': in_flocal = True
+			else:
+				target = a
+
+		if not (in_builtin or in_global or in_local or in_flocal):
+			in_builtin = in_global = in_local = in_flocal = True
+
+		if target is None:
+			print("No target specified")
+			return
+
+		# print(in_builtin, in_global, in_local, in_flocal)
+
+		res = self.f(target, [in_builtin, in_global, in_local, in_flocal])
+		if res is None:
+			print("No such name found")
+			return
+
+		print(f"{pauto.f(res[0], True)} {res[1]}")
+
+	@classmethod
+	def f(cls, target, scope):
+
+		in_builtin, in_global, in_local, in_flocal = scope
+
+		frame = gdb.parse_and_eval("_PyEval_EvalFrameDefault::frame")
+		f_code = frame.dereference()["f_code"]
+
+		localsplus = frame.dereference()["localsplus"]
+		if in_flocal and int(localsplus.cast(cuintptr_t())):
+			localsplusnames = pyVal_getters.PyTuple(f_code.dereference()["co_localsplusnames"])
+
+			localsplusnames = [pyVal_getters.PyUnicode(a) for a in localsplusnames]
+
+			try:
+				return pyVal_getters.PyCell_r(localsplus[localsplusnames.index(target)])
+			except ValueError:
+				pass
+
+		A = [
+			(in_local, frame.dereference()["f_locals"]),
+			(in_global, frame.dereference()["f_globals"]),
+			(in_builtin, frame.dereference()["f_builtins"])
+		]
+
+		A = [y for x, y in A if x and int(y.cast(cuintptr_t()))]
+
+		for f in A:
+			for a in pyVal_getters.PyDict(f):
+				if a is NULL:
+					continue
+
+				if pyVal_getters.PyUnicode(a[0]) != target:
+					continue
+
+				return pyVal_getters.PyCell_r(a[1])
+
+qlookup()
+
+class inspector:
+	class inspector_init(gdb.Command):
+		def __init__(self):
+			gdb.Command.__init__(
+				self,
+				"inspector_init",
+				gdb.COMMAND_RUNNING,
+				gdb.COMPLETE_FILENAME
+			)
+
+		def invoke(self, arg, is_tty):
+			argv = gdb.string_to_argv(arg)
+			with open(argv[0], 'r') as f:
+				pass
+
+	def __init__(self):
+		self.inspector_init()
+
+# inspector()
