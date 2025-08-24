@@ -1,13 +1,52 @@
 import gdb
 import re
+import json
+import inspect
+import atexit
+
+import sys, os
+sys.path.append(os.getcwd())
+
+from tools.classmethodable import classmethodable
 
 class NULL_t():
 	pass
 
 NULL = NULL_t()
 
+def cur_line():
+    frame = inspect.currentframe()
+    frameinfo = inspect.getframeinfo(frame.f_back)
+    return frameinfo.lineno
+
+'const char*'; cur_filename = gdb.Value(inspect.getframeinfo(inspect.currentframe()).filename)
+
 def cuintptr_t():
 	return gdb.lookup_type('uintptr_t')
+
+class hook_source(gdb.Command):
+	f_list = []
+
+	def __init__(self):
+		gdb.Command.__init__(
+			self,
+			"hook-source",
+			gdb.COMMAND_OBSCURE
+		)
+
+	def invoke(self, arg, from_tty):
+		for f in self.__class__.f_list:
+			f()
+
+	@classmethod
+	def add(cls, f):
+		cls.f_list.append(f)
+
+hook_source()
+
+def type_addr_name(ob):
+	tp = ob.dereference()['ob_type']
+	return hex(tp.cast(cuintptr_t())), tp.dereference()['tp_name'].string()
 
 class qsave_out(gdb.Command):
 	def __init__(self):
@@ -383,7 +422,7 @@ class pauto(gdb.Command):
 
 		s = ""
 		try:
-			if ptype: s += f"{ob.dereference()['ob_type']}: "
+			if ptype: s += f"{ob.dereference()['ob_type'].dereference()['tp_name'].string()}: "
 			s += m[int(ob.dereference()["ob_type"].cast(cuintptr_t()))](ob)
 		except KeyError:
 			s = f"Unknown Type: {ob.dereference()['ob_type']}"
@@ -428,6 +467,82 @@ class pautoex(gdb.Command):
 
 pautoex()
 
+class obj_mem_mgr:
+	objs = {}
+	next_id = 0
+	n = 0
+	objset = set()
+
+	def __init__(self):
+		self.objs = {}
+		self.next_id = 0
+		self.n = 0
+		self.objset = set()
+
+	@classmethodable
+	def add(clr, ob) -> int | None :
+		ptr = int(ob.cast(cuintptr_t()))
+		if ptr in clr.objset:
+			return
+
+		clr.objset.add(ptr)
+		clr.objs[clr.next_id] = ob
+		clr.next_id += 1
+		clr.n += 1
+
+		return clr.next_id - 1
+
+	@classmethodable
+	def remove(clr, ob_id) -> bool:
+		# print(f"obj_mem_mgr.remove {clr}", flush=True)
+		if ob_id not in clr.objs:
+			return False
+
+		ob = clr.objs[ob_id]
+		clr.objs.pop(ob_id)
+		clr.objset.remove(int(ob.cast(cuintptr_t())))
+
+		gdb.parse_and_eval("Py_DECREF").dereference()(
+			cur_filename,
+			gdb.Value(cur_line()),
+			ob
+		)
+
+		clr.n -= 1
+
+		return True
+
+	@classmethodable
+	def clear(clr):
+		for _, ob in clr.objs.items():
+			# print(f"Py_DECREF: {hex(int(ob.cast(cuintptr_t())))}")
+			gdb.parse_and_eval("Py_DECREF").dereference()(
+				cur_filename,
+				gdb.Value(cur_line()),
+				ob
+			)
+		clr.objs = {}
+		clr.next_id = 0
+		clr.n = 0
+		clr.objset = set()
+
+	@classmethodable
+	def __del__(clr):
+		# print(f"obj_mem_mgr.__del__ {clr}", flush=True)
+		for _, ob in clr.objs.items():
+			# print(f"Py_DECREF: {hex(int(ob.cast(cuintptr_t())))}")
+			gdb.parse_and_eval("Py_DECREF").dereference()(
+				cur_filename,
+				gdb.Value(cur_line()),
+				ob
+			)
+
+	@classmethod
+	def __static__del__(cls):
+		cls.__del__()
+
+hook_source.add(obj_mem_mgr.__static__del__)
+
 class cvt_thp2list(gdb.Command):
 	def __init__(self):
 		gdb.Command.__init__(
@@ -436,19 +551,93 @@ class cvt_thp2list(gdb.Command):
 			gdb.COMMAND_DATA,
 			gdb.COMPLETE_EXPRESSION
 		)
+		self.omm = obj_mem_mgr()
 
 	def invoke(self, arg, is_tty):
-		try:
-			# Call THPVariable_tolist(PyObject*, PyObject*)
+		argv = gdb.string_to_argv(arg)
+		# Call THPVariable_tolist(PyObject*, PyObject*)
+
+		if argv[0] == '-c':
+			self.omm.clear()
+			return
+
+		if argv[0] == '-r':
 			res = gdb.parse_and_eval("_ZN5torch8autogradL18THPVariable_tolistEP7_objectS2_").cast(
 				gdb.parse_and_eval("(PyObject*(*)(PyObject*, PyObject*))0").type
-			).dereference()(gdb.parse_and_eval(arg), 0)
+			).dereference()(gdb.parse_and_eval(argv[1]), 0)
 			idx = gdb.add_history(res)
 			print(f"${idx} = {res}")
-		except Exception as e:
-			print(f"exception: {str(e)}")
+			self.omm.add(res)
+			return
+
+		li = gdb.parse_and_eval("_ZN5torch8autogradL18THPVariable_tolistEP7_objectS2_").cast(
+			gdb.parse_and_eval("(PyObject*(*)(PyObject*, PyObject*))0").type
+		).dereference()(gdb.parse_and_eval(arg), 0)
+
+		res = self.g(self.f(li))
+
+		gdb.parse_and_eval("Py_DECREF").dereference()(
+			cur_filename,
+			gdb.Value(cur_line()),
+			li
+		)
+
+		print(res)
+
+	@classmethod
+	def f(cls, ob, PyList_Type=None):
+		if PyList_Type is None:
+			PyList_Type = gdb.parse_and_eval("&PyList_Type")
+
+		if ob.dereference()["ob_type"] == PyList_Type:
+			return [cls.f(x, PyList_Type) for x in pyVal_getters.PyList(ob)]
+		else:
+			return ob
+
+	@classmethod
+	def g(cls, ob):
+		if type(ob) is list:
+			return [cls.g(x) for x in ob]
+		else:
+			return pauto.f(ob, True)
 
 cvt_thp2list()
+
+class cvt_obj2str(gdb.Command):
+	def __init__(self):
+		gdb.Command.__init__(
+			self,
+			"cvt_obj2str",
+			gdb.COMMAND_DATA,
+			gdb.COMPLETE_EXPRESSION
+		)
+
+	def invoke(self, arg, is_tty):
+		v, t = self.f(gdb.parse_and_eval(arg))
+		print(f"type = {t}\nval = {v}")
+
+	@classmethod
+	def f(cls, ob):
+		raw = gdb.parse_and_eval("unicode_new_impl").dereference()(
+			gdb.parse_and_eval("&PyUnicode_Type"),
+			ob,
+			0,
+			0
+		)
+
+		res = pyVal_getters.PyUnicode(raw)
+
+		gdb.parse_and_eval("Py_DECREF").dereference()(
+			cur_filename,
+			gdb.Value(cur_line()),
+			raw
+		)
+
+		tp_name = ob.dereference()["ob_type"].dereference()["tp_name"].string()
+
+		return res, tp_name
+
+cvt_obj2str()
 
 class qi(gdb.Command):
 	def __init__(self):
@@ -522,7 +711,7 @@ class qst(gdb.Command):
 			a = ob.cast(gdb.lookup_type('PyObject').pointer())
 			idx = gdb.add_history(a)
 			print(' '*5 + f"${idx} = {a}")
-			print(' '*5 + f"{a.dereference()['ob_type']}")
+			print(' '*5 + f"{type_addr_name(a)}")
 			print(' '*5 + "val = ", end='')
 			print(pauto.f(a))
 
@@ -656,11 +845,11 @@ class qbt(gdb.Command):
 		i = 0
 		a = gdb.parse_and_eval("_PyEval_EvalFrameDefault::frame")
 		while True:
+			print(f"{i:<4}{pauto.f(a.dereference()['f_code'].dereference()['co_qualname'])}")
+
 			prev = a.dereference()['previous']
 			if not int(prev.cast(cuintptr_t())):
 				break
-
-			print(f"{i:<4}{pauto.f(a.dereference()['f_funcobj'])}")
 
 			i+=1
 			a = prev
@@ -946,7 +1135,7 @@ class qlookup(gdb.Command):
 		gdb.Command.__init__(
 			self,
 			"qlookup",
-			gdb.COMMAND_RUNNING,
+			gdb.COMMAND_DATA,
 			gdb.COMPLETE_NONE
 		)
 
@@ -960,62 +1149,137 @@ class qlookup(gdb.Command):
 		in_global = False
 		in_local = False
 		in_flocal = False
+		scope = 0
 
 		for a in argv:
 			m = self.pat.match(a)
 			if m:
 				for b in m.group(1):
-					if   b == 'b': in_builtin = True
-					elif b == 'g': in_global = True
-					elif b == 'l': in_local = True
-					elif b == 'f': in_flocal = True
+					if   b == 'b': scope |= 8
+					elif b == 'g': scope |= 4
+					elif b == 'l': scope |= 2
+					elif b == 'f': scope |= 1
 			else:
 				target = a
 
-		if not (in_builtin or in_global or in_local or in_flocal):
-			in_builtin = in_global = in_local = in_flocal = True
+		if not scope:
+			scope = 15
 
 		if target is None:
 			print("No target specified")
 			return
 
-		# print(in_builtin, in_global, in_local, in_flocal)
+		# print(scope&8, scope&4, scope&2, scope&1)
 
-		res = self.f(target, [in_builtin, in_global, in_local, in_flocal])
+		res = self.f(target, scope)
 		if res is None:
 			print("No such name found")
 			return
 
-		print(f"{pauto.f(res[0], True)} {res[1]}")
+		scope_str = {
+			0: "localsplus",
+			1: "locals",
+			2: "globals",
+			3: "Builtin",
+		}
+
+		if res[2] is not NULL:
+			v = cvt_obj2str.f(res[2])
+		else:
+			v = ("NULL", "*")
+
+		frame_qualname = pyVal_getters.PyUnicode(res[0].dereference()['f_code'].dereference()['co_qualname'])
+		print(f"where={frame_qualname},{scope_str[res[1]]} val={v[0]} type={v[1]} depth={res[3]}")
 
 	@classmethod
-	def f(cls, target, scope):
-
-		in_builtin, in_global, in_local, in_flocal = scope
+	def f(cls, target, scope, frame_qualname=None, frame_name=None):
+		'''
+		return value:
+			None when looking up fails
+			(frame, scope, value, depth) on success
+			frame: gdb.Value type. frame where the variable is founded
+			scope: int type. scope where the variable is founded
+				0: localsplus (fast local)
+				1: locals
+				2: globals
+				3: builtins
+			value: gdb.Value type. the value of the target variable
+			depth: the number of Cells wrapping the value
+		'''
 
 		frame = gdb.parse_and_eval("_PyEval_EvalFrameDefault::frame")
+
+		if frame_qualname is None and frame_name is None:
+			ret = cls._f(target, scope, frame)
+			if ret is None:
+				return None
+			return frame, *ret
+
+		if frame_qualname is not None:
+			while True:
+				name = pyVal_getters.PyUnicode(frame.dereference()['f_code'].dereference()['co_qualname'])
+				if name == frame_qualname:
+					break
+
+				prev = frame.dereference()['previous']
+				if not int(prev.cast(cuintptr_t())):
+					frame = None
+					break
+
+				frame = prev
+
+			if frame is not None:
+				ret = cls._f(target, scope, frame)
+				if ret is not None:
+					return frame, *ret
+
+		if frame is None:
+			frame = gdb.parse_and_eval("_PyEval_EvalFrameDefault::frame")
+
+		if frame_name is not None:
+			while True:
+				name = pyVal_getters.PyUnicode(frame.dereference()['f_code'].dereference()['co_qualname'])
+				if name == frame_name:
+					break
+
+				prev = frame.dereference()['previous']
+				if not int(prev.cast(cuintptr_t())):
+					frame = None
+					break
+
+				frame = prev
+
+			if frame is not None:
+				ret = cls._f(target, scope, frame)
+				if ret is not None:
+					return frame, *ret
+
+		return None
+
+	@classmethod
+	def _f(cls, target, scope, frame):
 		f_code = frame.dereference()["f_code"]
 
 		localsplus = frame.dereference()["localsplus"]
-		if in_flocal and int(localsplus.cast(cuintptr_t())):
+		if scope&1 and int(localsplus.cast(cuintptr_t())):
 			localsplusnames = pyVal_getters.PyTuple(f_code.dereference()["co_localsplusnames"])
 
 			localsplusnames = [pyVal_getters.PyUnicode(a) for a in localsplusnames]
 
 			try:
-				return pyVal_getters.PyCell_r(localsplus[localsplusnames.index(target)])
+				return 0, *pyVal_getters.PyCell_r(localsplus[localsplusnames.index(target)])
 			except ValueError:
 				pass
 
 		A = [
-			(in_local, frame.dereference()["f_locals"]),
-			(in_global, frame.dereference()["f_globals"]),
-			(in_builtin, frame.dereference()["f_builtins"])
+			(1, scope&2, frame.dereference()["f_locals"]),
+			(2, scope&4, frame.dereference()["f_globals"]),
+			(3, scope&8, frame.dereference()["f_builtins"])
 		]
 
-		A = [y for x, y in A if x and int(y.cast(cuintptr_t()))]
+		A = [(i, y) for i, x, y in A if x and int(y.cast(cuintptr_t()))]
 
-		for f in A:
+		for i, f in A:
 			for a in pyVal_getters.PyDict(f):
 				if a is NULL:
 					continue
@@ -1023,26 +1287,152 @@ class qlookup(gdb.Command):
 				if pyVal_getters.PyUnicode(a[0]) != target:
 					continue
 
-				return pyVal_getters.PyCell_r(a[1])
+				return i, *pyVal_getters.PyCell_r(a[1])
+
+		return None
 
 qlookup()
 
-class inspector:
-	class inspector_init(gdb.Command):
-		def __init__(self):
+class qwatch:
+	class qwatch_init(gdb.Command):
+		def __init__(self, ns):
+			self.ns = ns
 			gdb.Command.__init__(
 				self,
-				"inspector_init",
-				gdb.COMMAND_RUNNING,
+				"qwatch_init",
+				gdb.COMMAND_DATA,
 				gdb.COMPLETE_FILENAME
 			)
 
 		def invoke(self, arg, is_tty):
 			argv = gdb.string_to_argv(arg)
 			with open(argv[0], 'r') as f:
-				pass
+				config = json.load(f)
+
+			self.ns.config["path"] = config["path"]
+			if self.ns.file is not None:
+				self.ns.file.close()
+			self.ns.file = open(self.ns.config["path"], "wb")
+
+			config_targets = self.ns.config["targets"]
+
+			config_targets.clear()
+
+			for c in config["targets"]:
+				a = {
+					"name": None,
+					"scope": 0,
+					"frameq": None,
+					"frame": None,
+					"vz": False,
+				}
+
+				for k, v in c.items():
+					if k == "name":
+						a["name"] = v
+					elif k == "scope":
+						for b in v:
+							if   b == 'b': a["scope"] |= 8
+							elif b == 'g': a["scope"] |= 4
+							elif b == 'l': a["scope"] |= 2
+							elif b == 'f': a["scope"] |= 1
+							else:
+								config_targets.clear()
+								print(f"Unknown scope option: {b}")
+								return
+					elif k == "frame":
+						if v == "*":
+							a["frame"] = None
+						elif type(v) is str:
+							a["frame"] = v
+						else:
+							config_targets.clear()
+							print(f"Invalid frame option value type: {v}")
+							return
+					elif k == "frameq":
+						if v == "*":
+							a["frameq"] = None
+						elif type(v) is str:
+							a["frameq"] = v
+						else:
+							config_targets.clear()
+							print(f"Invalid frameq option value type: {v}")
+							return
+					elif k == "vz": # Visualize value if True
+						if type(v) is not bool:
+							config_targets.clear()
+							print(f"Invalid vz option value type: {v}")
+							return
+						a["vz"] = v
+					else:
+						config_targets.clear()
+						print(f"Unknown option: {k}")
+						return
+
+				if a["name"] is None:
+					config_targets.clear()
+					print("No name specified")
+					return
+
+				if not a["scope"]:
+					a["scope"] = 15
+
+				config_targets.append(a)
+
+			# print(config_targets)
+
+	class qwatch(gdb.Command):
+		def __init__(self, ns):
+			self.ns = ns
+			gdb.Command.__init__(
+				self,
+				"qwatch",
+				gdb.COMMAND_DATA,
+				gdb.COMPLETE_NONE
+			)
+
+		def invoke(self, arg, is_tty):
+			f = self.ns.file
+			f.write(b"\\(watch\\:")
+			for a in self.ns.config["targets"]:
+				v = qlookup.f(a["name"], a["scope"], a["frameq"], a["frame"])
+				name = a["name"].replace("\\", "\\\\")
+				if v is None:
+					f.write(f"\\({name}\\:\\)".encode())
+					continue
+
+				vf, vs, vv, vd = v
+
+				if vv is NULL:
+					sv, tp = "NULL", "*"
+				else:
+					sv, tp = cvt_obj2str.f(vv)
+					sv = sv.replace("\\", "\\\\")
+					tp = tp.replace("\\", "\\\\")
+
+				frame_qualname = pyVal_getters.PyUnicode(
+					vf
+					.dereference()['f_code']
+					.dereference()['co_qualname']
+				)
+
+				frame_qualname = frame_qualname.replace("\\", "\\\\")
+				f.write(f"\\({name}\\:{sv}\\,{tp}\\,{vd}\\,{frame_qualname}\\,{vs}\\)".encode())
+			f.write(b"\\)")
+			f.flush()
 
 	def __init__(self):
-		self.inspector_init()
+		self.config = {
+			"path": "",
+			"targets": [],
+		}
+		self.file = None
 
-# inspector()
+		self.qwatch_init(self)
+		self.qwatch(self)
+
+	def __del__(self):
+		if self.file is not None:
+			self.file.close()
+
+qwatch()

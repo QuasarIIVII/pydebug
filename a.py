@@ -1,4 +1,7 @@
-class C:
-	x = 'asdf'
-	y = x
-	print(y)
+def f():
+	return 1, 2
+
+def g():
+	return 0, *f()
+
+print(g())

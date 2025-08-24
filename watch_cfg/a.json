@@ -1,0 +1,10 @@
+{
+	"path": "./watch",
+	"targets" :[
+		{"name": "a", "scope":"f"},
+		{"name": "b", "scope":"f"},
+		{"name": "x", "scope":"g", "frame":"main"},
+		{"name": "x", "scope":"flgb"},
+		{"name": "x", "frame":"f2"}
+	]
+}

@@ -2,5 +2,6 @@ pytorch/
 legacy/
 data/
 build/
+__pycache__/
 log.txt
 out.txt
