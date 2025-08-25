@@ -1,6 +1,7 @@
 import sys, io
 import parser
 from parser import Parser, ByteStream
+import visualizer
 
 '''
 {'data': [{'data': [b'9', b'int', b'0', b'f0', b'0'], 'name': b'a'},
@@ -30,13 +31,37 @@ def show_vars(data):
 			print(' '*name_len + f"  val=N/A", flush=True)
 			continue
 
-		# value, type, depth, frame_qualname, scope
-		v = [x.decode() for x in v]
-		vv, vt, vd, vf, vs = v
+		if type(v[0]) is not dict:
+			# value, type, depth, frame_qualname, scope
+			v = [x.decode() for x in v]
+			vv, vt, vd, vf, vs = v
 
-		print(f"{name:<{name_len}}: type={vt} depth={vd} frame={vf} scope={scope_str[int(vs)]}")
-		print(' '*name_len + f"  val={vv}", flush=True)
-	pass
+			print(f"{name:<{name_len}}: type={vt} depth={vd} frame={vf} scope={scope_str[int(vs)]}")
+			print(' '*name_len + f"  val={vv}", flush=True)
+
+			continue
+
+		data, *v = v
+		vt, vd, vf, vs = [x.decode() for x in v]
+
+		if data["name"] == b"vz":
+			data = data["data"]
+			shape_d = int(data[0])
+			shape = [int(x) for x in data[1:1+shape_d]]
+
+			sz = 1
+			for a in shape:
+				sz *= a
+
+			w = int(data[shape_d])
+			h = sz//w
+
+			data = [float(x) for x in data[1+shape_d: 1+shape_d+sz]]
+			data = [h, w, min(data), max(data)] + data
+
+			print(f"{shape_d} {shape} {sz} {w} {h}")
+			print(f"{name:<{name_len}}: type={vt} depth={vd} frame={vf} scope={scope_str[int(vs)]}")
+			visualizer.visualizer(data)
 
 def main():
 	bs = ByteStream(sys.stdin.buffer)
@@ -57,6 +82,7 @@ def main():
 					b = bs.read1()
 
 			data = p.parse_group()
+			print(data)
 			if data["name"] == b"watch":
 				show_vars(data["data"])
 				sys.stdout.flush()

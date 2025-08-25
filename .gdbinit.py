@@ -570,11 +570,17 @@ class cvt_thp2list(gdb.Command):
 			self.omm.add(res)
 			return
 
+		res = self.g(self.f(gdb.parse_and_eval(arg)))
+
+		print(res)
+
+	@classmethod
+	def f(cls, ob):
 		li = gdb.parse_and_eval("_ZN5torch8autogradL18THPVariable_tolistEP7_objectS2_").cast(
 			gdb.parse_and_eval("(PyObject*(*)(PyObject*, PyObject*))0").type
-		).dereference()(gdb.parse_and_eval(arg), 0)
+		).dereference()(ob, 0)
 
-		res = self.g(self.f(li))
+		res = cls._f(li)
 
 		gdb.parse_and_eval("Py_DECREF").dereference()(
 			cur_filename,
@@ -582,15 +588,15 @@ class cvt_thp2list(gdb.Command):
 			li
 		)
 
-		print(res)
+		return res
 
 	@classmethod
-	def f(cls, ob, PyList_Type=None):
+	def _f(cls, ob, PyList_Type=None):
 		if PyList_Type is None:
 			PyList_Type = gdb.parse_and_eval("&PyList_Type")
 
 		if ob.dereference()["ob_type"] == PyList_Type:
-			return [cls.f(x, PyList_Type) for x in pyVal_getters.PyList(ob)]
+			return [cls._f(x, PyList_Type) for x in pyVal_getters.PyList(ob)]
 		else:
 			return ob
 
@@ -1392,6 +1398,11 @@ class qwatch:
 			)
 
 		def invoke(self, arg, is_tty):
+			try:
+				THPVariableType = gdb.parse_and_eval("&THPVariableType")
+			except gdb.error as e:
+				THPDeviceType = None
+
 			f = self.ns.file
 			f.write(b"\\(watch\\:")
 			for a in self.ns.config["targets"]:
@@ -1403,12 +1414,27 @@ class qwatch:
 
 				vf, vs, vv, vd = v
 
-				if vv is NULL:
-					sv, tp = "NULL", "*"
+				if( a["vz"]
+				and vv.dereference()["ob_type"].dereference()['tp_base'] == THPVariableType
+				and cvt_obj2str.f(vv)[1] == "Tensor"
+				):
+					tp = cvt_obj2str.f(vv)[1]
+					sv = cvt_thp2list.f(vv)
+					shp = self.shape(sv)
+					flt = [cvt_obj2str.f(x)[0] for x in self.flatten(sv)]
+					data = [len(shp)] + shp + flt
+
+					sv = "\\(vz\\:"
+					for x in data:
+						sv += f"{x}\\,"
+					sv += "\\)"
 				else:
-					sv, tp = cvt_obj2str.f(vv)
-					sv = sv.replace("\\", "\\\\")
-					tp = tp.replace("\\", "\\\\")
+					if vv is NULL:
+						sv, tp = "NULL", "*"
+					else:
+						sv, tp = cvt_obj2str.f(vv)
+						sv = sv.replace("\\", "\\\\")
+						tp = tp.replace("\\", "\\\\")
 
 				frame_qualname = pyVal_getters.PyUnicode(
 					vf
@@ -1420,6 +1446,32 @@ class qwatch:
 				f.write(f"\\({name}\\:{sv}\\,{tp}\\,{vd}\\,{frame_qualname}\\,{vs}\\)".encode())
 			f.write(b"\\)")
 			f.flush()
+
+		@classmethod
+		def flatten(cls, li, dest=None):
+			if dest is None:
+				dest = []
+
+			if type(li) is list:
+				for x in li:
+					cls.flatten(x, dest)
+			else:
+				dest.append(li)
+
+			return dest
+
+		@classmethod
+		def shape(cls, li, dest=None):
+			if dest is None:
+				dest = []
+
+			print(li)
+			if type(li) is list:
+				sz = len(li)
+				dest.append(sz)
+				if sz:
+					cls.shape(li[0], dest)
+			return dest
 
 	def __init__(self):
 		self.config = {

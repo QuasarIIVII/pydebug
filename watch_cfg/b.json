@@ -1,0 +1,8 @@
+{
+	"path": "./watch",
+	"targets" :[
+		{"name": "a", "scope":"", "vz":true},
+		{"name": "li", "scope":""},
+		{"name": "device", "scope":""}
+	]
+}

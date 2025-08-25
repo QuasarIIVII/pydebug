@@ -41,6 +41,21 @@ def bg_color_escape(r, g, b):
     """Return ANSI escape for a 24-bit background color."""
     return f"{ESC}48;2;{r};{g};{b}m"  # 48;2;<r>;<g>;<b>
 
+def visualizer(li):
+	it = iter(li)
+	h, w, m, M = int(next(it)), int(next(it)), float(next(it)), float(next(it))
+
+	matrix = []
+	for _ in range(h):
+		matrix.append([float(next(it)) for _ in range(w)])
+
+	for row in matrix:
+		line = ""
+		for v in row:
+			r, g, b = color_for(v, m, M)
+			line += f"{bg_color_escape(r, g, b)} {RESET}"
+		print(line)
+
 def f(it):
 	#if len(data) < 4:
 	#	print("Need at least 4 numbers (h w m M)")
